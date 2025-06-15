@@ -20,6 +20,7 @@
     "cli:demo": "tsx scripts/cli.ts demo",
     "demo:auth": "tsx examples/auth-flow-demo.ts",
     "demo:real-auth": "tsx examples/real-auth-demo.ts",
+    "demo:portfolio": "tsx examples/portfolio-demo.ts",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,json}\"",

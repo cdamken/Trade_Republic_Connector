@@ -8,6 +8,7 @@ import { DEFAULT_CONFIG } from '../config/config';
 import { AuthManager } from '../auth/manager';
 import { AuthenticationError } from '../types/auth';
 import { HttpClient } from './http-client';
+import { PortfolioManager } from '../portfolio/manager';
 import { logger } from '../utils/logger';
 import type { TradeRepublicConfig } from '../config/config';
 import type { LoginCredentials, AuthSession, AuthToken, MFAChallenge, MFAResponse } from '../types/auth';
@@ -17,12 +18,14 @@ export class TradeRepublicClient {
   private config: TradeRepublicConfig;
   private authManager: AuthManager;
   private httpClient: HttpClient;
+  private portfolioManager: PortfolioManager;
   private initialized = false;
 
   constructor(config?: Partial<TradeRepublicConfig>) {
     this.config = { ...DEFAULT_CONFIG, ...config };
     this.authManager = new AuthManager(this.config.credentialsPath);
     this.httpClient = new HttpClient(this.config);
+    this.portfolioManager = new PortfolioManager(this.authManager);
 
     // Set up logging level
     logger.setLevel(this.config.logLevel);
@@ -190,45 +193,122 @@ export class TradeRepublicClient {
     }
   }
 
+  // =================
+  // Authentication Methods  
+  // =================
+
   /**
-   * Get current session
+   * Initialize authentication and device pairing
+   */
+  public async initializeAuth(): Promise<void> {
+    this.ensureInitialized();
+    return this.authManager.initialize();
+  }
+
+  /**
+   * Get current authentication session
    */
   public getSession(): AuthSession | undefined {
     return this.authManager.getSession();
   }
 
+  // =================
+  // Portfolio Methods
+  // =================
+
   /**
-   * Check if client is authenticated
+   * Get all portfolio positions
    */
-  public isAuthenticated(): boolean {
-    return this.authManager.isAuthenticated();
+  public async getPortfolioPositions() {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.getPositions();
   }
 
   /**
-   * Get current configuration
+   * Get portfolio summary and overview
    */
-  public getConfig(): TradeRepublicConfig {
-    return { ...this.config };
+  public async getPortfolioSummary() {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.getSummary();
   }
 
   /**
-   * Update client configuration
+   * Get specific position by ISIN
    */
-  public updateConfig(updates: Partial<TradeRepublicConfig>): void {
-    this.config = { ...this.config, ...updates };
-
-    // Update logger level if changed
-    if (updates.logLevel) {
-      logger.setLevel(updates.logLevel);
-    }
-
-    // Add file transport if specified
-    if (updates.logFile) {
-      logger.addFileTransport(updates.logFile);
-    }
-
-    logger.debug('Configuration updated', { updates });
+  public async getPosition(isin: string) {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.getPosition(isin);
   }
+
+  /**
+   * Get cash position and available funds
+   */
+  public async getCashPosition() {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.getCash();
+  }
+
+  /**
+   * Get portfolio performance for a given timeframe
+   */
+  public async getPortfolioPerformance(timeframe?: '1D' | '1W' | '1M' | '3M' | '6M' | '1Y' | 'ALL') {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.getPerformance(timeframe);
+  }
+
+  /**
+   * Get instrument information by ISIN
+   */
+  public async getInstrumentInfo(isin: string) {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.getInstrumentInfo(isin);
+  }
+
+  /**
+   * Search for instruments by name or symbol
+   */
+  public async searchInstruments(query: string) {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.searchInstruments(query);
+  }
+
+  /**
+   * Get positions filtered by minimum value
+   */
+  public async getPositionsByValue(minValue: number = 0) {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.getPositionsByValue(minValue);
+  }
+
+  /**
+   * Get positions with positive performance
+   */
+  public async getWinningPositions() {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.getWinningPositions();
+  }
+
+  /**
+   * Get positions with negative performance
+   */
+  public async getLosingPositions() {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+    return this.portfolioManager.getLosingPositions();
+  }
+
+  // =================
+  // Private Methods
+  // =================
 
   /**
    * Validate configuration
@@ -250,6 +330,14 @@ export class TradeRepublicClient {
     }
 
     return true;
+  }
+
+  /**
+   * Check if currently authenticated
+   */
+  public isAuthenticated(): boolean {
+    const session = this.authManager.getSession();
+    return session !== undefined && session !== null && session.token.expiresAt > Date.now();
   }
 
   /**

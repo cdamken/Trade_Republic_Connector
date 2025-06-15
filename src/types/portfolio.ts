@@ -2,6 +2,7 @@
  * Portfolio Types
  *
  * TypeScript definitions for Trade Republic portfolio data
+ * @author Carlos Damken <carlos@damken.com>
  */
 
 export interface Portfolio {
@@ -16,20 +17,30 @@ export interface Portfolio {
 }
 
 export interface Position {
-  isin: string;
+  instrumentId: string; // ISIN - primary identifier
+  isin?: string; // Alias for instrumentId
+  name?: string;
   quantity: number;
   averagePrice: number;
-  currentPrice: number;
-  totalValue: number;
-  totalCost: number;
+  currentPrice?: number;
+  marketValue: number; // Current market value
+  totalValue?: number; // Alias for marketValue
+  totalCost?: number;
   unrealizedPnL: number;
-  unrealizedPnLPercentage: number;
-  asset: Asset;
+  unrealizedPnLPercentage?: number;
+  unrealizedPnLPercent?: number; // Alias for unrealizedPnLPercentage
+  exchange?: string;
+  exchangeIds?: string[];
+  currency: string;
+  lastUpdated?: Date;
+  asset?: Asset;
 }
 
 export interface CashPosition {
   currency: string;
   amount: number;
+  availableForPayout?: number;
+  availableForInvestment?: number;
 }
 
 export interface Asset {
@@ -47,10 +58,25 @@ export type AssetType = 'stock' | 'etf' | 'crypto' | 'bond' | 'derivative';
 
 export interface PortfolioSummary {
   totalValue: number;
-  dayChange: number;
-  dayChangePercentage: number;
-  totalReturn: number;
-  totalReturnPercentage: number;
+  totalInvested: number;
+  totalPnL: number;
+  totalPnLPercent: number;
+  availableCash: number;
+  currency: string;
   positionCount: number;
-  lastUpdated: number;
+  lastUpdated: Date;
+  dayChange?: number;
+  dayChangePercentage?: number;
+  totalReturn?: number;
+  totalReturnPercentage?: number;
+}
+
+export interface PortfolioPerformance {
+  timeframe: '1D' | '1W' | '1M' | '3M' | '6M' | '1Y' | 'ALL';
+  absoluteChange: number;
+  percentChange: number;
+  data: Array<{
+    timestamp: Date;
+    value: number;
+  }>;
 }

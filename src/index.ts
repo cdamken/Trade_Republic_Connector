@@ -7,6 +7,7 @@
 
 // Main exports
 export { TradeRepublicClient } from './api/client';
+export { TradeRepublicAPI } from './api/trade-republic-api';
 export type { TradeRepublicConfig } from './config/config';
 
 // Configuration exports
@@ -24,6 +25,9 @@ export {
 
 // HTTP client exports
 export { HttpClient, RateLimiter } from './api/http-client';
+
+// Portfolio exports
+export { PortfolioManager } from './portfolio/manager';
 
 // Utility exports
 export { logger } from './utils/logger';

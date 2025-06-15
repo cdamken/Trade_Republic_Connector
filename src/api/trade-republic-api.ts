@@ -289,4 +289,182 @@ export class TradeRepublicAPI {
       return false;
     }
   }
+
+  /**
+   * Get portfolio positions
+   */
+  async getPortfolioPositions(sessionToken: string): Promise<TRApiResponse> {
+    const url = `${this.baseUrl}/api/v1/account/positions`;
+    
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          ...this.getHeaders(),
+          'Authorization': `Bearer ${sessionToken}`,
+        },
+        signal: AbortSignal.timeout(this.timeout),
+      });
+
+      const data = await response.json() as any;
+
+      logger.debug('Portfolio Positions API Response', { 
+        status: response.status, 
+        statusText: response.statusText,
+        data: data 
+      });
+
+      if (response.ok) {
+        logger.info('✅ Portfolio positions retrieved successfully');
+        return { data };
+      } else {
+        return {
+          error: {
+            code: `HTTP_${response.status}`,
+            message: data.message || response.statusText,
+            details: data,
+          },
+        };
+      }
+    } catch (error) {
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        throw new AuthenticationError('Network error - check your internet connection', 'NETWORK_ERROR');
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Get portfolio summary/overview
+   */
+  async getPortfolioSummary(sessionToken: string): Promise<TRApiResponse> {
+    const url = `${this.baseUrl}/api/v1/account/overview`;
+    
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          ...this.getHeaders(),
+          'Authorization': `Bearer ${sessionToken}`,
+        },
+        signal: AbortSignal.timeout(this.timeout),
+      });
+
+      const data = await response.json() as any;
+
+      logger.debug('Portfolio Summary API Response', { 
+        status: response.status, 
+        statusText: response.statusText,
+        data: data 
+      });
+
+      if (response.ok) {
+        logger.info('✅ Portfolio summary retrieved successfully');
+        return { data };
+      } else {
+        return {
+          error: {
+            code: `HTTP_${response.status}`,
+            message: data.message || response.statusText,
+            details: data,
+          },
+        };
+      }
+    } catch (error) {
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        throw new AuthenticationError('Network error - check your internet connection', 'NETWORK_ERROR');
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Get instrument/stock information by ISIN
+   */
+  async getInstrumentInfo(isin: string, sessionToken: string): Promise<TRApiResponse> {
+    const url = `${this.baseUrl}/api/v1/instrument/${isin}`;
+    
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          ...this.getHeaders(),
+          'Authorization': `Bearer ${sessionToken}`,
+        },
+        signal: AbortSignal.timeout(this.timeout),
+      });
+
+      const data = await response.json() as any;
+
+      logger.debug('Instrument Info API Response', { 
+        status: response.status, 
+        statusText: response.statusText,
+        isin,
+        data: data 
+      });
+
+      if (response.ok) {
+        logger.info('✅ Instrument info retrieved successfully', { isin });
+        return { data };
+      } else {
+        return {
+          error: {
+            code: `HTTP_${response.status}`,
+            message: data.message || response.statusText,
+            details: data,
+          },
+        };
+      }
+    } catch (error) {
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        throw new AuthenticationError('Network error - check your internet connection', 'NETWORK_ERROR');
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Search for instruments/stocks
+   */
+  async searchInstruments(query: string, sessionToken: string): Promise<TRApiResponse> {
+    const url = `${this.baseUrl}/api/v1/search?q=${encodeURIComponent(query)}&limit=20`;
+    
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          ...this.getHeaders(),
+          'Authorization': `Bearer ${sessionToken}`,
+        },
+        signal: AbortSignal.timeout(this.timeout),
+      });
+
+      const data = await response.json() as any;
+
+      logger.debug('Search Instruments API Response', { 
+        status: response.status, 
+        statusText: response.statusText,
+        query,
+        data: data 
+      });
+
+      if (response.ok) {
+        logger.info('✅ Instrument search completed successfully', { query });
+        return { data };
+      } else {
+        return {
+          error: {
+            code: `HTTP_${response.status}`,
+            message: data.message || response.statusText,
+            details: data,
+          },
+        };
+      }
+    } catch (error) {
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        throw new AuthenticationError('Network error - check your internet connection', 'NETWORK_ERROR');
+      }
+      throw error;
+    }
+  }
 }
