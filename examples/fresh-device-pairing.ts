@@ -3,7 +3,6 @@
  * 
  * This will reset device pairing and force 2FA verification automatically
  * 
- * @author Carlos Damken <carlos@damken.com>
  */
 
 import { TradeRepublicClient } from '../src/api/client.js';

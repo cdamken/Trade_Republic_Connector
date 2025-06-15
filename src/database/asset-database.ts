@@ -4,7 +4,6 @@
  * Provides database storage and retrieval for Trade Republic assets
  * with real-time price updates and portfolio management.
  * 
- * @author Carlos Damken <carlos@damken.com>
  */
 
 import Database from 'better-sqlite3';

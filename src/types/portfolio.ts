@@ -2,7 +2,6 @@
  * Portfolio Types
  *
  * TypeScript definitions for Trade Republic portfolio data
- * @author Carlos Damken <carlos@damken.com>
  */
 
 export interface Portfolio {

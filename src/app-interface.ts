@@ -10,7 +10,6 @@
  * ✅ Export data in multiple formats
  * ✅ Monitor collection progress
  * 
- * @author Carlos Damken <carlos@damken.com>
  */
 
 import { TradeRepublicClient } from '../src/api/client';

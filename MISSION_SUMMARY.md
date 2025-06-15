@@ -227,7 +227,7 @@ npm run format            # Code formatting
 
 ---
 
-**📧 Contact**: carlos@damken.com  
+**📧 Contact**: Use GitHub issues for questions and support  
 **📅 Completed**: June 2025  
 **📊 Assets**: 119+ verified  
 **📈 Success Rate**: 91%+  

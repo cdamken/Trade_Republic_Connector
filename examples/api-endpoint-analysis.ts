@@ -4,7 +4,6 @@
  * This script analyzes the TR API structure and discovers available endpoints
  * for dynamic asset discovery and data collection.
  * 
- * @author Carlos Damken <carlos@damken.com>
  */
 
 import { TradeRepublicClient } from '../src/api/client.js';

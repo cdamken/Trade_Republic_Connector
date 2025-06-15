@@ -38,7 +38,7 @@
     "broker",
     "websocket"
   ],
-  "author": "Carlos Damken <carlos@damken.com>",
+  "author": "Trade Republic Connector Contributors",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"

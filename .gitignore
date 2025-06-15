@@ -52,6 +52,14 @@ session.json
 # Testing
 .vitest/
 
+# Data files with collection results (may contain personal data)
+data/*.json
+data/*.csv
+data/*.db
+data/exports/
+data/production-exports/
+data/backups/
+
 # Project-specific exclusions
 _OLD/                    # Research archive - not for public repo
 CLAUDE.md               # AI assistant memory - not for public repo

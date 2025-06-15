@@ -12,7 +12,6 @@
  * ✅ Implements robust error handling and logging
  * ✅ Ready for integration into larger applications
  * 
- * @author Carlos Damken <carlos@damken.com>
  */
 
 import { TradeRepublicClient } from '../src/api/client';

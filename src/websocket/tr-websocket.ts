@@ -1,8 +1,6 @@
 /**
  * Trade Republic WebSocket Implementation
  * Based on pytr protocol for real Trade Republic WebSocket communication
- * 
- * @author Carlos Damken <carlos@damken.com>
  */
 
 import { EventEmitter } from 'events';

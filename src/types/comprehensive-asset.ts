@@ -2,7 +2,6 @@
  * Comprehensive Asset Information Types
  * 
  * Complete data structures for all possible asset information
- * @author Carlos Damken <carlos@damken.com>
  */
 
 export interface ComprehensiveAssetInfo {

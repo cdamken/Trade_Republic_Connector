@@ -4,7 +4,6 @@
  * Since REST endpoints return HTML, this uses WebSocket connections
  * to collect real asset and portfolio data from Trade Republic
  * 
- * @author Carlos Damken <carlos@damken.com>
  */
 
 import { TradeRepublicClient } from '../src/api/client.js';

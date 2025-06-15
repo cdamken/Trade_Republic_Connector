@@ -629,7 +629,7 @@ app.listen(3000, () => {
 
 ## Additional Resources
 
-- [GitHub Repository](https://github.com/cdamken/Trade_Republic_Connector)
+- [GitHub Repository](https://github.com/your-username/Trade_Republic_Connector)
 - [Example Scripts](./examples/)
 - [TypeScript Definitions](./src/types/)
 

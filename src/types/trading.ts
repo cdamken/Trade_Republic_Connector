@@ -4,7 +4,6 @@
  * Type definitions for Trade Republic trading operations,
  * orders, and market data.
  * 
- * @author Carlos Damken <carlos@damken.com>
  */
 
 export type OrderType = 'market' | 'limit';

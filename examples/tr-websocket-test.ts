@@ -2,7 +2,6 @@
  * Simple Trade Republic WebSocket Test
  * Tests the new pytr-based WebSocket implementation
  * 
- * @author Carlos Damken <carlos@damken.com>
  */
 
 import { TradeRepublicClient } from '../src/api/client.js';
