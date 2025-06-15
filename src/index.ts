@@ -33,6 +33,10 @@ export { PortfolioManager } from './portfolio/manager';
 export { logger } from './utils/logger';
 export type { LogLevel } from './utils/logger';
 
+// WebSocket exports
+export { WebSocketManager } from './websocket/manager';
+export type { WebSocketConfig, Subscription } from './websocket/manager';
+
 // Type exports
 export type * from './types/auth';
 export type * from './types/portfolio';

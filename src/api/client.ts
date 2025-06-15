@@ -13,12 +13,15 @@ import { logger } from '../utils/logger';
 import type { TradeRepublicConfig } from '../config/config';
 import type { LoginCredentials, AuthSession, AuthToken, MFAChallenge, MFAResponse } from '../types/auth';
 import type { Portfolio } from '../types/portfolio';
+import { WebSocketManager } from '../websocket/manager';
+import type { WebSocketConfig } from '../websocket/manager';
 
 export class TradeRepublicClient {
   private config: TradeRepublicConfig;
   private authManager: AuthManager;
   private httpClient: HttpClient;
   private portfolioManager: PortfolioManager;
+  private websocketManager?: WebSocketManager;
   private initialized = false;
 
   constructor(config?: Partial<TradeRepublicConfig>) {
@@ -26,6 +29,7 @@ export class TradeRepublicClient {
     this.authManager = new AuthManager(this.config.credentialsPath);
     this.httpClient = new HttpClient(this.config);
     this.portfolioManager = new PortfolioManager(this.authManager);
+    this.websocketManager = new WebSocketManager(this.config);
 
     // Set up logging level
     logger.setLevel(this.config.logLevel);
@@ -335,6 +339,108 @@ export class TradeRepublicClient {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getLosingPositions();
+  }
+
+  // =================
+  // WebSocket Methods
+  // =================
+
+  /**
+   * Initialize WebSocket connection for real-time data
+   */
+  public async initializeWebSocket(): Promise<void> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    if (this.websocketManager) {
+      logger.warn('WebSocket already initialized');
+      return;
+    }
+
+    const wsConfig: WebSocketConfig = {
+      url: this.config.websocketUrl,
+      reconnectInterval: 5000,
+      maxReconnectAttempts: 10,
+      heartbeatInterval: 30000,
+      connectionTimeout: 10000,
+    };
+
+    this.websocketManager = new WebSocketManager(wsConfig, this.authManager);
+
+    // Set up event listeners
+    this.websocketManager.on('connected', () => {
+      logger.info('WebSocket connected successfully');
+    });
+
+    this.websocketManager.on('disconnected', () => {
+      logger.warn('WebSocket disconnected');
+    });
+
+    this.websocketManager.on('error', (error) => {
+      logger.error('WebSocket error', { error });
+    });
+
+    await this.websocketManager.connect();
+  }
+
+  /**
+   * Subscribe to real-time price updates
+   */
+  public subscribeToPrices(isin: string, callback: (data: any) => void): string | undefined {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
+      return undefined;
+    }
+
+    return this.websocketManager.subscribePrices(isin, callback);
+  }
+
+  /**
+   * Subscribe to portfolio updates
+   */
+  public subscribeToPortfolio(callback: (data: any) => void): string | undefined {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
+      return undefined;
+    }
+
+    return this.websocketManager.subscribePortfolio(callback);
+  }
+
+  /**
+   * Unsubscribe from a WebSocket subscription
+   */
+  public unsubscribe(subscriptionId: string): void {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized');
+      return;
+    }
+
+    this.websocketManager.unsubscribe(subscriptionId);
+  }
+
+  /**
+   * Get WebSocket connection status
+   */
+  public getWebSocketStatus(): any {
+    if (!this.websocketManager) {
+      return { connected: false, initialized: false };
+    }
+
+    return {
+      ...this.websocketManager.getStatus(),
+      initialized: true,
+    };
+  }
+
+  /**
+   * Disconnect WebSocket
+   */
+  public disconnectWebSocket(): void {
+    if (this.websocketManager) {
+      this.websocketManager.disconnect();
+      this.websocketManager = undefined;
+    }
   }
 
   // =================

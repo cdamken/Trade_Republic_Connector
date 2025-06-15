@@ -37,22 +37,29 @@ export interface UnsubscriptionRequest {
 
 export type ChannelType = 'price' | 'portfolio' | 'orders' | 'trades';
 
-export interface PriceUpdateMessage {
+export interface PriceUpdateMessage extends WebSocketMessage {
   type: 'price_update';
-  isin: string;
-  price: number;
-  currency: string;
-  timestamp: number;
-  bid?: number;
-  ask?: number;
+  payload: {
+    isin: string;
+    price: number;
+    currency: string;
+    bid?: number;
+    ask?: number;
+  };
 }
 
-export interface PortfolioUpdateMessage {
+export interface PortfolioUpdateMessage extends WebSocketMessage {
   type: 'portfolio_update';
-  totalValue: number;
-  dayChange: number;
-  dayChangePercentage: number;
-  timestamp: number;
+  payload: {
+    totalValue: number;
+    dayChange: number;
+    dayChangePercentage: number;
+    positions?: Array<{
+      isin: string;
+      quantity: number;
+      value: number;
+    }>;
+  };
 }
 
 export interface WebSocketConfig {
