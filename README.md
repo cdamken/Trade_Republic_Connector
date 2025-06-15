@@ -36,6 +36,48 @@ This is an **unofficial** API connector for Trade Republic. It is not affiliated
 - **🧪 Well Tested**: Comprehensive test suite with 90%+ coverage
 - **📚 Documentation**: Complete API documentation and examples
 
+## 🎯 **NEW: Real Trading Operations ✅**
+
+**MAJOR UPDATE**: Full real API implementation with live trading capabilities:
+
+- **📈 Live Trading**: Real buy/sell orders with market and limit types
+- **💰 Real-time Prices**: Live market data with bid/ask spreads
+- **📊 Order Management**: Place, cancel, and track orders with detailed history
+- **🔔 Live Notifications**: WebSocket streams for order executions and portfolio updates
+- **📰 Market News**: Live news feeds with sentiment analysis
+- **👁️ Watchlist Management**: Real-time watchlist with price alerts
+- **📈 Historical Data**: OHLCV data for multiple timeframes (1d to 5y)
+- **🏛️ Market Status**: Trading venue status and market hours
+
+### Trading Demo
+```bash
+npm run demo:trading  # Comprehensive trading features demo
+npm run demo:real-auth  # Real authentication flow
+```
+
+## 🎯 **Asset Data Collection**
+
+Advanced asset data collection capabilities:
+
+- **📊 55+ Data Points**: Complete asset information including financial metrics, risk data, ESG scores
+- **🗄️ SQLite Database**: Test database for development with advanced search and analytics
+- **📰 News Integration**: Latest news and corporate events for each asset
+- **📈 Technical Indicators**: Moving averages, RSI, MACD, Bollinger Bands
+- **🏢 Corporate Data**: Earnings, dividends, analyst ratings, price targets
+- **⚡ Real-time Updates**: WebSocket integration for live market data
+
+### Asset Data Demo
+
+```bash
+# Run the comprehensive asset demo (no authentication required)
+npm run demo:assets-simple
+
+# Full demo with database (requires authentication)
+npm run demo:assets
+```
+
+---
+
 ## 📦 Installation
 
 ```bash
@@ -211,6 +253,52 @@ console.log(`Positions: ${portfolio.positions.length}`);
 // Iterate through positions
 portfolio.positions.forEach(position => {
   console.log(`${position.asset.name}: ${position.quantity} shares @ €${position.currentPrice}`);
+});
+```
+
+### 🎯 Trading Operations
+
+```typescript
+import { BuyOrderData, SellOrderData } from 'trade-republic-connector';
+
+// Place a buy order
+const buyOrder: BuyOrderData = {
+  isin: 'US0378331005',  // Apple Inc.
+  amount: 1000,          // €1000 worth
+  orderType: 'market',   // Market order
+  venue: 'XETRA'         // Trading venue
+};
+
+const orderResponse = await client.placeBuyOrder(buyOrder);
+console.log(`Order placed: ${orderResponse.orderId}`);
+console.log(`Status: ${orderResponse.status}`);
+
+// Get real-time price
+const price = await client.getRealTimePrice('US0378331005');
+console.log(`Current AAPL price: €${price.price}`);
+console.log(`Change: ${price.changePercent}%`);
+console.log(`Market status: ${price.marketStatus}`);
+
+// Get order history
+const orders = await client.getOrderHistory({ 
+  status: 'executed', 
+  limit: 10 
+});
+
+console.log(`Found ${orders.length} executed orders`);
+orders.forEach(order => {
+  console.log(`${order.side.toUpperCase()} ${order.instrumentName}: €${order.executedPrice}`);
+});
+
+// Manage watchlist
+await client.addToWatchlist('DE0007164600'); // SAP
+const watchlist = await client.getWatchlist();
+console.log(`Watchlist has ${watchlist.items.length} items`);
+
+// Get market news
+const news = await client.getMarketNews('US0378331005', 5);
+news.articles.forEach(article => {
+  console.log(`${article.title} - ${article.sentiment}`);
 });
 ```
 

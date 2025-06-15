@@ -9,18 +9,40 @@ import { AuthManager } from '../auth/manager';
 import { AuthenticationError } from '../types/auth';
 import { HttpClient } from './http-client';
 import { PortfolioManager } from '../portfolio/manager';
+import { TradingManager } from '../trading/manager';
 import { logger } from '../utils/logger';
 import type { TradeRepublicConfig } from '../config/config';
 import type { LoginCredentials, AuthSession, AuthToken, MFAChallenge, MFAResponse } from '../types/auth';
 import type { Portfolio } from '../types/portfolio';
+import type {
+  BuyOrderData,
+  SellOrderData,
+  OrderResponse,
+  OrderHistory,
+  OrderHistoryFilters,
+  RealTimePrice,
+  HistoricalPricesResponse,
+  MarketNewsResponse,
+  WatchlistResponse,
+} from '../types/trading';
 import { WebSocketManager } from '../websocket/manager';
 import type { WebSocketConfig } from '../websocket/manager';
+import type {
+  PriceUpdateMessage,
+  PortfolioUpdateMessage,
+  OrderUpdateMessage,
+  ExecutionMessage,
+  MarketStatusMessage,
+  NewsMessage,
+  WatchlistUpdateMessage,
+} from '../types/websocket';
 
 export class TradeRepublicClient {
   private config: TradeRepublicConfig;
   private authManager: AuthManager;
   private httpClient: HttpClient;
   private portfolioManager: PortfolioManager;
+  private tradingManager: TradingManager;
   private websocketManager?: WebSocketManager;
   private initialized = false;
 
@@ -29,7 +51,8 @@ export class TradeRepublicClient {
     this.authManager = new AuthManager(this.config.credentialsPath);
     this.httpClient = new HttpClient(this.config);
     this.portfolioManager = new PortfolioManager(this.authManager);
-    this.websocketManager = new WebSocketManager(this.config);
+    this.tradingManager = new TradingManager(this.authManager);
+    this.websocketManager = new WebSocketManager(this.config.websocket, this.authManager);
 
     // Set up logging level
     logger.setLevel(this.config.logLevel);
@@ -38,6 +61,34 @@ export class TradeRepublicClient {
     if (this.config.logFile) {
       logger.addFileTransport(this.config.logFile);
     }
+  }
+
+  /**
+   * Get the authentication manager
+   */
+  public get auth(): AuthManager {
+    return this.authManager;
+  }
+
+  /**
+   * Get the portfolio manager
+   */
+  public get portfolio(): PortfolioManager {
+    return this.portfolioManager;
+  }
+
+  /**
+   * Get the trading manager
+   */
+  public get trading(): TradingManager {
+    return this.tradingManager;
+  }
+
+  /**
+   * Get the WebSocket manager
+   */
+  public get websocket(): WebSocketManager | undefined {
+    return this.websocketManager;
   }
 
   /**
@@ -342,6 +393,242 @@ export class TradeRepublicClient {
   }
 
   // =================
+  // Trading Methods
+  // =================
+
+  /**
+   * Place a buy order
+   */
+  public async placeBuyOrder(orderData: BuyOrderData): Promise<OrderResponse> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.placeBuyOrder(orderData);
+    } catch (error) {
+      logger.error('Failed to place buy order', {
+        error: error instanceof Error ? error.message : error,
+        isin: orderData.isin,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Place a sell order
+   */
+  public async placeSellOrder(orderData: SellOrderData): Promise<OrderResponse> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.placeSellOrder(orderData);
+    } catch (error) {
+      logger.error('Failed to place sell order', {
+        error: error instanceof Error ? error.message : error,
+        isin: orderData.isin,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Cancel an order
+   */
+  public async cancelOrder(orderId: string): Promise<boolean> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.cancelOrder(orderId);
+    } catch (error) {
+      logger.error('Failed to cancel order', {
+        error: error instanceof Error ? error.message : error,
+        orderId,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Get order history
+   */
+  public async getOrderHistory(filters?: OrderHistoryFilters): Promise<OrderHistory[]> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.getOrderHistory(filters);
+    } catch (error) {
+      logger.error('Failed to get order history', {
+        error: error instanceof Error ? error.message : error,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Get real-time price for instrument
+   */
+  public async getRealTimePrice(isin: string): Promise<RealTimePrice> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.getRealTimePrice(isin);
+    } catch (error) {
+      logger.error('Failed to get real-time price', {
+        error: error instanceof Error ? error.message : error,
+        isin,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Get historical price data
+   */
+  public async getHistoricalPrices(
+    isin: string,
+    period: '1d' | '5d' | '1m' | '3m' | '6m' | '1y' | '5y'
+  ): Promise<HistoricalPricesResponse> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.getHistoricalPrices(isin, period);
+    } catch (error) {
+      logger.error('Failed to get historical prices', {
+        error: error instanceof Error ? error.message : error,
+        isin,
+        period,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Get market news
+   */
+  public async getMarketNews(isin?: string, limit: number = 20): Promise<MarketNewsResponse> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.getMarketNews(isin, limit);
+    } catch (error) {
+      logger.error('Failed to get market news', {
+        error: error instanceof Error ? error.message : error,
+        isin,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Get watchlist
+   */
+  public async getWatchlist(): Promise<WatchlistResponse> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.getWatchlist();
+    } catch (error) {
+      logger.error('Failed to get watchlist', {
+        error: error instanceof Error ? error.message : error,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Add instrument to watchlist
+   */
+  public async addToWatchlist(isin: string): Promise<boolean> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.addToWatchlist(isin);
+    } catch (error) {
+      logger.error('Failed to add to watchlist', {
+        error: error instanceof Error ? error.message : error,
+        isin,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Remove instrument from watchlist
+   */
+  public async removeFromWatchlist(isin: string): Promise<boolean> {
+    this.ensureInitialized();
+    this.ensureAuthenticated();
+
+    try {
+      // Auto-refresh token if needed
+      if (this.config.autoRefreshTokens) {
+        await this.ensureValidToken();
+      }
+
+      return await this.tradingManager.removeFromWatchlist(isin);
+    } catch (error) {
+      logger.error('Failed to remove from watchlist', {
+        error: error instanceof Error ? error.message : error,
+        isin,
+      });
+      throw error;
+    }
+  }
+
+  // =================
   // WebSocket Methods
   // =================
 
@@ -352,20 +639,15 @@ export class TradeRepublicClient {
     this.ensureInitialized();
     this.ensureAuthenticated();
 
-    if (this.websocketManager) {
-      logger.warn('WebSocket already initialized');
+    if (!this.websocketManager) {
+      logger.error('WebSocket manager not available');
       return;
     }
 
-    const wsConfig: WebSocketConfig = {
-      url: this.config.websocketUrl,
-      reconnectInterval: 5000,
-      maxReconnectAttempts: 10,
-      heartbeatInterval: 30000,
-      connectionTimeout: 10000,
-    };
-
-    this.websocketManager = new WebSocketManager(wsConfig, this.authManager);
+    if (this.websocketManager.isConnected()) {
+      logger.warn('WebSocket already connected');
+      return;
+    }
 
     // Set up event listeners
     this.websocketManager.on('connected', () => {
@@ -439,8 +721,113 @@ export class TradeRepublicClient {
   public disconnectWebSocket(): void {
     if (this.websocketManager) {
       this.websocketManager.disconnect();
-      this.websocketManager = undefined;
     }
+  }
+
+  /**
+   * Check if WebSocket is connected
+   */
+  public isWebSocketConnected(): boolean {
+    return this.websocketManager ? this.websocketManager.isConnected() : false;
+  }
+
+  // =================
+  // Enhanced WebSocket Methods
+  // =================
+
+  /**
+   * Subscribe to order updates
+   */
+  public subscribeToOrders(callback: (message: OrderUpdateMessage) => void): string | undefined {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
+      return undefined;
+    }
+
+    return this.websocketManager.subscribeOrders(callback);
+  }
+
+  /**
+   * Subscribe to trade executions
+   */
+  public subscribeToExecutions(callback: (message: ExecutionMessage) => void): string | undefined {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
+      return undefined;
+    }
+
+    return this.websocketManager.subscribeExecutions(callback);
+  }
+
+  /**
+   * Subscribe to market status updates
+   */
+  public subscribeToMarketStatus(venue: string, callback: (message: MarketStatusMessage) => void): string | undefined {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
+      return undefined;
+    }
+
+    return this.websocketManager.subscribeMarketStatus(venue, callback);
+  }
+
+  /**
+   * Subscribe to news updates
+   */
+  public subscribeToNews(callback: (message: NewsMessage) => void, isin?: string): string | undefined {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
+      return undefined;
+    }
+
+    return this.websocketManager.subscribeNews(callback, isin);
+  }
+
+  /**
+   * Subscribe to watchlist updates
+   */
+  public subscribeToWatchlistUpdates(callback: (message: WatchlistUpdateMessage) => void): string | undefined {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
+      return undefined;
+    }
+
+    return this.websocketManager.subscribeWatchlist(callback);
+  }
+
+  /**
+   * Bulk subscribe to price updates for multiple instruments
+   */
+  public subscribeToPricesBulk(isins: string[], callback: (message: PriceUpdateMessage) => void): string[] {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
+      return [];
+    }
+
+    return this.websocketManager.subscribePricesBulk(isins, callback);
+  }
+
+  /**
+   * Unsubscribe from multiple subscriptions
+   */
+  public unsubscribeMultiple(subscriptionIds: string[]): void {
+    if (!this.websocketManager) {
+      logger.error('WebSocket not initialized');
+      return;
+    }
+
+    this.websocketManager.unsubscribeMultiple(subscriptionIds);
+  }
+
+  /**
+   * Get all active WebSocket subscriptions
+   */
+  public getActiveSubscriptions(): { id: string; channel: string; isin?: string }[] {
+    if (!this.websocketManager) {
+      return [];
+    }
+
+    return this.websocketManager.getActiveSubscriptions();
   }
 
   // =================

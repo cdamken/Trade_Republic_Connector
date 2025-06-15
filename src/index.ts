@@ -37,11 +37,50 @@ export type { LogLevel } from './utils/logger';
 export { WebSocketManager } from './websocket/manager';
 export type { WebSocketConfig, Subscription } from './websocket/manager';
 
+// Trading exports
+export { TradingManager } from './trading/manager';
+export type {
+  BuyOrderData,
+  SellOrderData,
+  OrderResponse,
+  OrderHistory,
+  OrderHistoryFilters,
+  RealTimePrice,
+  HistoricalPricesResponse,
+  MarketNewsResponse,
+  WatchlistResponse,
+  TradingLimits,
+  MarketStatus,
+  OrderType,
+  OrderStatus,
+  OrderSide,
+  TradingVenue,
+} from './types/trading';
+export {
+  TradingError,
+  InsufficientFundsError,
+  MarketClosedError,
+  InvalidOrderError,
+} from './types/trading';
+
+// Asset data collection exports  
+export { ComprehensiveAssetDataCollector } from './data/asset-collector';
+export { AssetTestDatabase } from './database/test-database';
+export type {
+  ComprehensiveAssetInfo,
+  ComprehensiveHistoricalData,
+  AssetSearchQuery,
+  AssetSearchResult,
+  ExtendedAssetType,
+  AssetDatabaseRecord
+} from './types/comprehensive-asset';
+
 // Type exports
 export type * from './types/auth';
 export type * from './types/portfolio';
 export type * from './types/market';
 export type * from './types/websocket';
+export type * from './types/trading';
 
 // Version info
 export const VERSION = '1.0.0';

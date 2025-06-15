@@ -12,6 +12,11 @@ import type {
   UnsubscriptionRequest,
   PriceUpdateMessage,
   PortfolioUpdateMessage,
+  OrderUpdateMessage,
+  ExecutionMessage,
+  MarketStatusMessage,
+  NewsMessage,
+  WatchlistUpdateMessage,
   ChannelType,
 } from '../types/websocket';
 import { AuthManager } from '../auth/manager';
@@ -167,6 +172,96 @@ export class WebSocketManager extends EventEmitter {
         callback(message as unknown as PortfolioUpdateMessage);
       }
     });
+  }
+
+  /**
+   * Subscribe to order updates
+   */
+  public subscribeOrders(callback: (message: OrderUpdateMessage) => void): string {
+    return this.subscribe('orders', (message) => {
+      if (message.type === 'order_update') {
+        callback(message as unknown as OrderUpdateMessage);
+      }
+    });
+  }
+
+  /**
+   * Subscribe to trade executions
+   */
+  public subscribeExecutions(callback: (message: ExecutionMessage) => void): string {
+    return this.subscribe('executions', (message) => {
+      if (message.type === 'execution') {
+        callback(message as unknown as ExecutionMessage);
+      }
+    });
+  }
+
+  /**
+   * Subscribe to market status updates
+   */
+  public subscribeMarketStatus(venue: string, callback: (message: MarketStatusMessage) => void): string {
+    return this.subscribe('market_status', (message) => {
+      if (message.type === 'market_status') {
+        const statusMessage = message as unknown as MarketStatusMessage;
+        if (statusMessage.payload?.venue === venue) {
+          callback(statusMessage);
+        }
+      }
+    }, venue);
+  }
+
+  /**
+   * Subscribe to news updates for instrument or general market
+   */
+  public subscribeNews(callback: (message: NewsMessage) => void, isin?: string): string {
+    return this.subscribe('news', (message) => {
+      if (message.type === 'news') {
+        const newsMessage = message as unknown as NewsMessage;
+        if (!isin || newsMessage.payload?.instruments?.includes(isin)) {
+          callback(newsMessage);
+        }
+      }
+    }, isin);
+  }
+
+  /**
+   * Subscribe to watchlist updates
+   */
+  public subscribeWatchlist(callback: (message: WatchlistUpdateMessage) => void): string {
+    return this.subscribe('watchlist', (message) => {
+      if (message.type === 'watchlist_update') {
+        callback(message as unknown as WatchlistUpdateMessage);
+      }
+    });
+  }
+
+  /**
+   * Bulk subscribe to multiple instruments for price updates
+   */
+  public subscribePricesBulk(isins: string[], callback: (message: PriceUpdateMessage) => void): string[] {
+    logger.info('📊 Setting up bulk price subscriptions', { count: isins.length });
+    
+    return isins.map(isin => this.subscribePrices(isin, callback));
+  }
+
+  /**
+   * Unsubscribe from multiple subscriptions
+   */
+  public unsubscribeMultiple(subscriptionIds: string[]): void {
+    logger.info('📴 Removing multiple subscriptions', { count: subscriptionIds.length });
+    
+    subscriptionIds.forEach(id => this.unsubscribe(id));
+  }
+
+  /**
+   * Get all active subscriptions
+   */
+  public getActiveSubscriptions(): { id: string; channel: ChannelType; isin?: string }[] {
+    return Array.from(this.subscriptions.values()).map(sub => ({
+      id: sub.id,
+      channel: sub.channel,
+      isin: sub.isin,
+    }));
   }
 
   /**

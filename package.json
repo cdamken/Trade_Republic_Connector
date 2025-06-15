@@ -22,6 +22,10 @@
     "demo:real-auth": "tsx examples/real-auth-demo.ts",
     "demo:portfolio": "tsx examples/portfolio-demo.ts",
     "demo:websocket": "tsx examples/websocket-demo.ts",
+    "demo:assets": "tsx examples/asset-data-demo.ts",
+    "demo:assets-mock": "tsx examples/asset-data-mock-demo.ts",
+    "demo:assets-simple": "tsx examples/simple-asset-demo.ts",
+    "demo:trading": "tsx examples/trading-demo.ts",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,json}\"",
@@ -61,7 +65,9 @@
     "vitest": "^3.2.3"
   },
   "dependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "axios": "^1.10.0",
+    "better-sqlite3": "^11.10.0",
     "dotenv": "^16.5.0",
     "winston": "^3.17.0",
     "ws": "^8.18.2"
