@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "startTime": "2025-06-15T10:11:55.658Z",
+    "endTime": "2025-06-15T10:12:27.690Z",
+    "durationMs": 32041,
+    "version": "1.0.0",
+    "mode": "production"
+  },
+  "authentication": {
+    "success": true,
+    "userId": "16f1ff6b-b686-4caf-bec3-ceed7ba1e556",
+    "method": "device_keys"
+  },
+  "assetDiscovery": {
+    "totalAttempted": 130,
+    "successfulPrices": 119,
+    "failedPrices": 11,
+    "successRate": 91.53846153846153,
+    "markets": [
+      "US",
+      "DE",
+      "NL",
+      "FR",
+      "CH",
+      "GB",
+      "EU",
+      "Unknown"
+    ],
+    "assetTypes": [
+      "stock",
+      "etf"
+    ]
+  },
+  "database": {
+    "totalAssetsStored": 119,
+    "priceDataPoints": 119,
+    "databasePath": "./data/production-assets.db",
+    "exportPaths": [
+      "data/production-exports/assets-2025-06-15T10-12-27.json",
+      "data/production-exports/assets-2025-06-15T10-12-27.csv"
+    ]
+  },
+  "summary": {
+    "status": "success",
+    "message": "Successfully collected data for 119 assets with 91.5% success rate",
+    "nextSteps": [
+      "Data ready for integration into trading applications",
+      "Database can be used for backtesting and analysis",
+      "Price data collection can be automated with scheduled runs",
+      "Portfolio tracking can be implemented using this foundation"
+    ]
+  }
+}
