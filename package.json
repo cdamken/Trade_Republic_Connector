@@ -2,7 +2,10 @@
   "name": "trade-republic-connector",
   "version": "1.0.0",
   "description": "Modern TypeScript Trade Republic API connector with support for 400+ assets",
-  "author": "Carlos Damken",
+  "author": {
+    "name": "Carlos Damken",
+    "email": "carlos.damken@gmail.com"
+  },
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

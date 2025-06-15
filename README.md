@@ -368,7 +368,7 @@ npm install
 
 ### Development Configuration
 
-Create a `.env` file for development:
+Create a `.env` file for development with your Trade Republic credentials:
 
 ```env
 TR_USERNAME=your_phone_number
@@ -377,6 +377,8 @@ TR_PIN=your_pin
 TR_API_URL=https://api.traderepublic.com
 NODE_ENV=development
 ```
+
+**Note**: The `.env` file is gitignored and will remain on your local machine for testing. Your credentials are needed to authenticate with Trade Republic's API for data collection and testing.
 
 ### Development Commands
 
@@ -1496,7 +1498,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🤝 Contributing
 
-This project focuses on production-ready Trade Republic API integration. When contributing:
+This project is maintained by **Carlos Damken** ([carlos.damken@gmail.com](mailto:carlos.damken@gmail.com)).
+
+For production-ready Trade Republic API integration contributions:
 
 1. **Production First**: All features must be production-ready with proper error handling
 2. **Security Focused**: Never compromise on security or credential handling  
@@ -1504,7 +1508,13 @@ This project focuses on production-ready Trade Republic API integration. When co
 4. **Well Documented**: Include comprehensive documentation for production deployment
 5. **Thoroughly Tested**: Unit tests, integration tests, and load testing required
 
-For issues, questions, or production deployment support, please use the GitHub issues tracker.
+### Getting Help
+
+- **Issues**: Use GitHub issues for bug reports and feature requests
+- **Questions**: Reach out via email for production deployment support
+- **Discussions**: GitHub discussions for community help and ideas
+
+For enterprise support, custom implementations, or production consultations, contact [carlos.damken@gmail.com](mailto:carlos.damken@gmail.com).
 
 ## ⚠️ Important Production Notes
 
@@ -1523,7 +1533,19 @@ This software is provided for production use but comes with no warranties. When 
 - Monitor for changes to the Trade Republic API
 
 ### Support & Maintenance
-This is an actively maintained project focused on production reliability. For enterprise support or custom implementations, please contact the maintainers.
+This project is actively maintained by Carlos Damken ([carlos.damken@gmail.com](mailto:carlos.damken@gmail.com)) with focus on production reliability. 
+
+**What's Protected from Public Repository:**
+- Personal stock market collection results and databases
+- Actual asset prices and trading data
+- Personal trading statistics and metrics
+
+**What's Available for Contact:**
+- Author information and email for support
+- Repository links and contribution guidelines
+- Technical documentation and examples
+
+For enterprise support, custom implementations, or production deployment assistance, please reach out via email.
 
 ---
 
