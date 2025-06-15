@@ -1523,7 +1523,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🤝 Contributing
 
-This project is maintained by **Carlos Damken** ([carlos.damken@gmail.com](mailto:carlos.damken@gmail.com)).
+This project is maintained by **Carlos Damken** ([carlos@damken.com](mailto:carlos@damken.com)).
 
 For production-ready Trade Republic API integration contributions:
 
@@ -1539,7 +1539,7 @@ For production-ready Trade Republic API integration contributions:
 - **Questions**: Reach out via email for production deployment support
 - **Discussions**: GitHub discussions for community help and ideas
 
-For enterprise support, custom implementations, or production consultations, contact [carlos.damken@gmail.com](mailto:carlos.damken@gmail.com).
+For enterprise support, custom implementations, or production consultations, contact [carlos@damken.com](mailto:carlos@damken.com).
 
 ## ⚠️ Important Production Notes
 
@@ -1558,7 +1558,7 @@ This software is provided for production use but comes with no warranties. When 
 - Monitor for changes to the Trade Republic API
 
 ### Support & Maintenance
-This project is actively maintained by Carlos Damken ([carlos.damken@gmail.com](mailto:carlos.damken@gmail.com)) with focus on production reliability. 
+This project is actively maintained by Carlos Damken ([carlos@damken.com](mailto:carlos@damken.com)) with focus on production reliability. 
 
 **What's Protected from Public Repository:**
 - Personal stock market collection results and databases

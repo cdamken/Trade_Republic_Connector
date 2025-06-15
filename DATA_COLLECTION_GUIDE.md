@@ -272,7 +272,7 @@ If you encounter issues:
 2. **Run the test script** to verify setup
 3. **Review console output** for specific errors
 4. **Check Trade Republic API status** for outages
-5. **Contact the maintainer**: carlos.damken@gmail.com
+5. **Contact the maintainer**: carlos@damken.com
 
 ## 📄 Legal Notice
 

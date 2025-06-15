@@ -188,7 +188,7 @@ FROM price_data ORDER BY timestamp DESC LIMIT 10;
 ### What's Public (Safe to Share)
 - All source code and scripts
 - Documentation and guides
-- Author attribution (Carlos Damken, carlos.damken@gmail.com)
+- Author attribution (Carlos Damken, carlos@damken.com)
 - Setup and configuration instructions
 
 ### Git Configuration
