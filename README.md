@@ -6,19 +6,18 @@ A comprehensive, production-ready TypeScript connector for the Trade Republic AP
 
 - ✅ **Real Authentication** - Device pairing, PIN, and 2FA support
 - ✅ **WebSocket Integration** - Real-time price data collection
-- ✅ **Asset Discovery** - Automated discovery of 130+ assets (stocks & ETFs)
+- ✅ **Asset Discovery** - Automated discovery of stocks and ETFs
 - ✅ **Database Storage** - SQLite database with asset and price data
 - ✅ **Multiple Export Formats** - JSON, CSV export capabilities
-- ✅ **Production Ready** - 91%+ success rate for data collection
+- ✅ **Production Ready** - Robust data collection capabilities
 - ✅ **Clean App Interface** - Simple API for application integration
 - ✅ **Comprehensive Documentation** - Full API reference included
 
 ## 📊 Current Status
 
-- **Assets Collected**: 119+ verified assets with real price data
-- **Markets Covered**: US (61), DE (24), EU (12), FR (6), GB (2), NL (5), CH (2)
-- **Asset Types**: Stocks, ETFs
-- **Success Rate**: 91%+ for price data collection
+- **Asset Discovery**: Dynamic discovery system for stocks and ETFs
+- **Markets Supported**: US, DE, EU, FR, GB, NL, CH and others
+- **Asset Types**: Stocks, ETFs, Bonds (via ISIN)
 - **Data Quality**: Real-time bid/ask/last prices with timestamps
 
 ## 🚀 Quick Start
@@ -59,7 +58,7 @@ npm run collect:assets
 npm run test:websocket
 
 # Demo app interface
-npm run demo:interface
+npm run demo:data
 ```
 
 ## 📱 App Integration
@@ -90,7 +89,7 @@ const csvFile = await tr.exportData('csv');
 
 // Get collection statistics
 const status = await tr.getCollectionStatus();
-console.log(`Success rate: ${status.successRate}%`);
+console.log(`Assets collected: ${status.totalAssets}`);
 ```
 
 ## 📂 Project Structure
@@ -115,15 +114,15 @@ Trade_Republic_Connector/
 │   └── utils/
 │       └── logger.ts                 # Logging utilities
 ├── examples/
-│   ├── production-asset-discovery.ts # 🔥 Main collection script
+│   ├── production-asset-discovery.ts # Main collection script
 │   ├── tr-websocket-test.ts         # WebSocket testing
 │   ├── websocket-asset-collector.ts  # Asset collection
-│   └── app-interface-demo.ts         # App interface demo
+│   └── simple-data-demo.ts          # App interface demo
 ├── data/
-│   ├── production-assets.db          # 🔥 Main database
-│   ├── production-results.json       # Collection results
-│   └── production-exports/           # Exported data
-└── API_DOCUMENTATION.md              # 📖 Complete API docs
+│   ├── assets.db                     # Asset database
+│   ├── results.json                  # Collection results
+│   └── exports/                      # Exported data
+└── API_REFERENCE.md                  # 📖 Complete API docs
 ```
 
 ## 🔌 API Endpoints
@@ -160,13 +159,13 @@ price_data (isin, timestamp, price, bid, ask, open, high, low, ...)
 
 ### Available Formats
 
-- **SQLite Database**: `data/production-assets.db`
-- **JSON Export**: `data/production-exports/assets-*.json`
-- **CSV Export**: `data/production-exports/assets-*.csv`
+- **SQLite Database**: `data/assets.db`
+- **JSON Export**: `data/exports/assets-*.json`
+- **CSV Export**: `data/exports/assets-*.csv`
 
 ## 🔍 Asset Discovery
 
-### Current Assets (119 verified)
+### Current Assets
 
 - **US Stocks**: Apple, Microsoft, Google, Amazon, Tesla, NVIDIA, Meta, Netflix, etc.
 - **German Stocks**: SAP, Siemens, Adidas, BMW, Deutsche Bank, etc.
@@ -175,11 +174,11 @@ price_data (isin, timestamp, price, bid, ask, open, high, low, ...)
 
 ### Scaling Strategy
 
-To reach 400+ assets:
-- Expand S&P 500 component coverage
-- Add complete DAX 40 and FTSE 100
-- Include more international ETFs
-- Implement sector-based discovery
+To discover more assets:
+- Expand component coverage for major indices
+- Add international market coverage
+- Include more sector-specific ETFs
+- Implement pattern-based discovery algorithms
 
 ## 🛠️ Development
 
@@ -195,7 +194,7 @@ npm run build               # Build TypeScript
 npm run dev                # Development mode
 
 # Examples
-npm run demo:interface      # Demo app interface
+npm run demo:data               # Demo app interface
 npm run examples:auth       # Authentication demo
 ```
 
@@ -213,10 +212,10 @@ const ADDITIONAL_ASSETS = [
 
 ## 📈 Performance
 
-- **Collection Speed**: ~4 assets/second
-- **Success Rate**: 91%+ for known assets
-- **Memory Usage**: ~50MB for 100+ assets
-- **Database Size**: ~1MB per 1000 price points
+- **Collection Speed**: Configurable rate limiting
+- **Memory Usage**: Optimized for large datasets
+- **Database Size**: Scales with collected data
+- **Reliability**: Robust error handling and retry logic
 
 ## 🔐 Security
 
@@ -236,7 +235,7 @@ Common issues and solutions:
 
 ## 📝 API Documentation
 
-See [API_DOCUMENTATION.md](./API_DOCUMENTATION.md) for comprehensive API reference including:
+See [API_REFERENCE.md](./API_REFERENCE.md) for comprehensive API reference including:
 - WebSocket protocol details
 - Subscription message formats
 - Error handling patterns
@@ -264,4 +263,4 @@ This project is for educational and research purposes. Use at your own risk. Not
 
 ---
 
-**Status**: ✅ Production Ready | **Last Updated**: June 2025 | **Assets**: 119+ | **Success Rate**: 91%+
+**Status**: ✅ Production Ready | **Last Updated**: December 2024
