@@ -14,6 +14,28 @@ build/
 .env.*
 !.env.example
 
+# Production data (PRIVATE - contains real financial data)
+data/production/
+data/exports/
+
+# Prevent accidental database files in wrong locations
+*.db
+*.db-wal
+*.db-shm
+!tests/databases/demo-*.db
+!tests/databases/test-*.db
+
+# Test data can have specific tracked files but ignore most generated ones
+tests/databases/*.db
+tests/exports/
+tests/databases/*.json
+
+# Prevent JSON exports in root or wrong directories
+/*.json
+/data/*.json
+/examples/*.json
+/scripts/*.json
+
 # IDE files
 .vscode/
 .idea/

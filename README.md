@@ -37,6 +37,29 @@ All data is stored locally in SQLite database + JSON/CSV exports.
 
 📖 **[Complete Data Collection Guide →](./DATA_COLLECTION_GUIDE.md)**
 
+## 🗂️ Data Management & Organization
+
+**NEW**: Automatic data organization and cleanup system!
+
+```bash
+# Check data organization status
+npm run db:status
+
+# Scan for stray files
+npm run db:scan
+
+# Clean up files in wrong locations
+npm run db:clean
+```
+
+The system automatically:
+- 🔐 **Separates Production & Test Data** - Real data never committed to git
+- 🧹 **Prevents Database Clutter** - Automatic cleanup of stray files
+- 📊 **Monitors Organization** - Status reports and health checks
+- 🛡️ **Protects Sensitive Data** - Enhanced .gitignore and security
+
+📖 **[Complete Data Management Guide →](./DATA_MANAGEMENT.md)**
+
 ## 📊 Current Status
 
 - **Comprehensive Data Access**: Portfolio, trading history, watchlist, market data

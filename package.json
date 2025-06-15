@@ -28,6 +28,15 @@
     "collect-data": "tsx examples/comprehensive-data-collection.ts",
     "quick-collect": "tsx examples/quick-data-collection.ts",
     "test-setup": "tsx scripts/test-setup.ts",
+    "explore-db": "tsx scripts/explore-database.ts",
+    "manage-data": "./scripts/manage-data.sh",
+    
+    "db:status": "tsx scripts/database-manager.ts status",
+    "db:scan": "tsx scripts/database-manager.ts scan",
+    "db:clean": "tsx scripts/database-manager.ts clean",
+    "db:demo": "tsx scripts/database-manager.ts demo",
+    "scan-databases": "tsx scripts/database-manager.ts scan",
+    "clean-databases": "tsx scripts/database-manager.ts clean",
     
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx",

@@ -51,7 +51,7 @@ class ComprehensiveDataCollector {
 
   constructor() {
     this.client = new TradeRepublicClient();
-    this.db = new AssetDatabaseManager('./data/comprehensive-trade-republic-data.db');
+    this.db = new AssetDatabaseManager('./data/production/comprehensive-trade-republic-data.db');
     this.stats = {
       portfolioPositions: 0,
       orderHistory: 0,
@@ -384,8 +384,8 @@ class ComprehensiveDataCollector {
     
     try {
       // Export database data
-      await this.db.exportToJSON('./data/comprehensive-assets.json');
-      await this.db.exportToCSV('./data/comprehensive-assets.csv');
+      await this.db.exportToJSON('./data/exports/comprehensive-assets.json');
+      await this.db.exportToCSV('./data/exports/comprehensive-assets.csv');
 
       // Generate comprehensive report
       const report = {
@@ -409,7 +409,7 @@ class ComprehensiveDataCollector {
         database: this.db.getStatistics()
       };
 
-      await writeFile('./data/comprehensive-trade-republic-report.json', 
+      await writeFile('./data/exports/comprehensive-trade-republic-report.json', 
         JSON.stringify(report, null, 2));
 
       // Generate summary report
@@ -432,7 +432,7 @@ class ComprehensiveDataCollector {
         databaseStats: this.db.getStatistics()
       };
 
-      await writeFile('./data/collection-summary.json', 
+      await writeFile('./data/exports/collection-summary.json', 
         JSON.stringify(summary, null, 2));
 
       console.log('✅ Reports generated:');

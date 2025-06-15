@@ -34,7 +34,7 @@ async function testSetup() {
   // Test database initialization
   console.log('\n2. 🗄️  Testing database initialization...');
   try {
-    const db = new AssetDatabaseManager('./data/test-trade-republic-data.db');
+    const db = new AssetDatabaseManager('./tests/databases/test-trade-republic-data.db');
     const stats = db.getStatistics();
     console.log('✅ Database initialized successfully');
     console.log(`   - Total assets: ${stats.totalAssets}`);

@@ -18,7 +18,7 @@ async function quickDataCollection() {
 
   // Initialize client and database
   const client = new TradeRepublicClient();
-  const db = new AssetDatabaseManager('./data/quick-collection.db');
+  const db = new AssetDatabaseManager('./data/production/quick-collection.db');
 
   try {
     // Step 1: Authenticate
@@ -96,7 +96,7 @@ async function quickDataCollection() {
       }
 
       // Export results
-      await writeFile('./data/quick-collection-results.json', 
+      await writeFile('./data/exports/quick-collection-results.json', 
         JSON.stringify({
           collectedAt: new Date().toISOString(),
           portfolioSummary,
