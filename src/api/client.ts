@@ -8,12 +8,9 @@ import { DEFAULT_CONFIG } from '../config/config';
 import { AuthManager } from '../auth/manager';
 import { AuthenticationError } from '../types/auth';
 import { HttpClient } from './http-client';
-import { PortfolioManager } from '../portfolio/manager';
-import { TradingManager } from '../trading/manager';
 import { logger } from '../utils/logger';
 import type { TradeRepublicConfig } from '../config/config';
 import type { LoginCredentials, AuthSession, AuthToken, MFAChallenge, MFAResponse } from '../types/auth';
-import type { Portfolio } from '../types/portfolio';
 import type {
   BuyOrderData,
   SellOrderData,
@@ -41,8 +38,6 @@ export class TradeRepublicClient {
   private config: TradeRepublicConfig;
   private authManager: AuthManager;
   private httpClient: HttpClient;
-  private portfolioManager: PortfolioManager;
-  private tradingManager: TradingManager;
   private websocketManager?: TradeRepublicWebSocket;
   private initialized = false;
 
