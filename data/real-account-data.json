@@ -1,0 +1,29 @@
+{
+  "account": {
+    "userId": "16f1ff6b-b686-4caf-bec3-ceed7ba1e556",
+    "sessionId": "000e6ba5-e610-4a6f-afcb-028720f2156f",
+    "tokenExpiresAt": "2025-06-15T08:40:30.088Z",
+    "jurisdiction": "DE"
+  },
+  "portfolio": [],
+  "instruments": [],
+  "errors": [
+    "Portfolio extraction failed: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for Apple: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for Microsoft: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for Tesla: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for Amazon: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for Google: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for SAP: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for Siemens: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for BMW: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for Volkswagen: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for Adidas: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for ETF: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for MSCI World: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for S&P 500: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for DAX: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON",
+    "Search failed for NASDAQ: SyntaxError: Unexpected token '<', \"<html><bod\"... is not valid JSON"
+  ],
+  "timestamp": "2025-06-15T08:35:39.823Z"
+}

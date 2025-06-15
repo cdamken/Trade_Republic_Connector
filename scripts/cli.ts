@@ -10,8 +10,8 @@
  * Author: Carlos Damken (carlos@damken.com)
  */
 
-import { TradeRepublicClient, getCredentialsFromEnv } from '../src/index';
-import { AuthenticationError } from '../src/auth/manager';
+import { TradeRepublicClient, getCredentialsFromEnv } from '../src/index.js';
+import { AuthenticationError } from '../src/types/auth.js';
 
 const command = process.argv[2];
 

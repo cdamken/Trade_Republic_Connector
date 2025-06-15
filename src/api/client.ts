@@ -25,8 +25,8 @@ import type {
   MarketNewsResponse,
   WatchlistResponse,
 } from '../types/trading';
-import { WebSocketManager } from '../websocket/manager';
-import type { WebSocketConfig } from '../websocket/manager';
+import { TradeRepublicWebSocket } from '../websocket/tr-websocket';
+import type { TRWebSocketConfig } from '../websocket/tr-websocket';
 import type {
   PriceUpdateMessage,
   PortfolioUpdateMessage,
@@ -43,7 +43,7 @@ export class TradeRepublicClient {
   private httpClient: HttpClient;
   private portfolioManager: PortfolioManager;
   private tradingManager: TradingManager;
-  private websocketManager?: WebSocketManager;
+  private websocketManager?: TradeRepublicWebSocket;
   private initialized = false;
 
   constructor(config?: Partial<TradeRepublicConfig>) {
@@ -52,7 +52,7 @@ export class TradeRepublicClient {
     this.httpClient = new HttpClient(this.config);
     this.portfolioManager = new PortfolioManager(this.authManager);
     this.tradingManager = new TradingManager(this.authManager);
-    this.websocketManager = new WebSocketManager(this.config.websocket, this.authManager);
+    this.websocketManager = new TradeRepublicWebSocket(this.config.websocket, this.authManager);
 
     // Set up logging level
     logger.setLevel(this.config.logLevel);
@@ -87,7 +87,7 @@ export class TradeRepublicClient {
   /**
    * Get the WebSocket manager
    */
-  public get websocket(): WebSocketManager | undefined {
+  public get websocket(): TradeRepublicWebSocket | undefined {
     return this.websocketManager;
   }
 
@@ -296,6 +296,91 @@ export class TradeRepublicClient {
    */
   public getSession(): AuthSession | undefined {
     return this.authManager.getSession();
+  }
+
+  /**
+   * Ensure valid session with automatic re-authentication prompts
+   */
+  public async ensureValidSession(): Promise<AuthSession> {
+    this.ensureInitialized();
+
+    try {
+      // Use the auth manager's session validation
+      return await this.authManager.ensureValidSession();
+    } catch (error) {
+      if (error instanceof AuthenticationError) {
+        logger.warn('Session validation failed', { 
+          code: error.code, 
+          message: error.message 
+        });
+
+        // For specific error codes, provide clear guidance to user
+        switch (error.code) {
+          case 'SESSION_EXPIRED':
+            throw new AuthenticationError(
+              'Your session has expired. Please log in again using the CLI or your application.',
+              'SESSION_EXPIRED'
+            );
+
+          case 'SERVER_UNREACHABLE':
+            throw new AuthenticationError(
+              'Cannot reach Trade Republic servers. Please check your internet connection and try again.',
+              'SERVER_UNREACHABLE'
+            );
+
+          case 'DEVICE_NOT_PAIRED':
+            throw new AuthenticationError(
+              'Device pairing has been lost. Please complete device pairing again using the CLI.',
+              'DEVICE_NOT_PAIRED'
+            );
+
+          default:
+            throw error;
+        }
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Force re-authentication with 2FA handling
+   */
+  public async forceReAuthentication(credentials: LoginCredentials): Promise<{
+    session?: AuthSession;
+    requiresMFA?: boolean;
+    challenge?: MFAChallenge;
+  }> {
+    this.ensureInitialized();
+
+    try {
+      const result = await this.authManager.forceReAuthentication(credentials);
+
+      if (result.session) {
+        // Update HTTP client auth header
+        this.httpClient.setAuthHeader(this.authManager.getAuthHeader());
+        logger.info('Re-authentication successful');
+      }
+
+      return result;
+    } catch (error) {
+      logger.error('Force re-authentication failed', {
+        error: error instanceof Error ? error.message : error,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Validate current session and connectivity
+   */
+  public async validateSessionAndConnectivity(): Promise<{
+    isValid: boolean;
+    isServerReachable: boolean;
+    requiresReauth: boolean;
+    error?: string;
+  }> {
+    this.ensureInitialized();
+    return this.authManager.validateSessionAndConnectivity();
   }
 
   // =================
@@ -644,7 +729,7 @@ export class TradeRepublicClient {
       return;
     }
 
-    if (this.websocketManager.isConnected()) {
+    if (this.websocketManager.isWebSocketConnected()) {
       logger.warn('WebSocket already connected');
       return;
     }
@@ -668,37 +753,37 @@ export class TradeRepublicClient {
   /**
    * Subscribe to real-time price updates
    */
-  public subscribeToPrices(isin: string, callback: (data: any) => void): string | undefined {
+  public async subscribeToPrices(isin: string, callback: (data: any) => void): Promise<string | undefined> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
       return undefined;
     }
 
-    return this.websocketManager.subscribePrices(isin, callback);
+    return await this.websocketManager.subscribeToPrices(isin, 'LSX', callback);
   }
 
   /**
    * Subscribe to portfolio updates
    */
-  public subscribeToPortfolio(callback: (data: any) => void): string | undefined {
+  public async subscribeToPortfolio(callback: (data: any) => void): Promise<string | undefined> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
       return undefined;
     }
 
-    return this.websocketManager.subscribePortfolio(callback);
+    return await this.websocketManager.subscribeToPortfolio(callback);
   }
 
   /**
    * Unsubscribe from a WebSocket subscription
    */
-  public unsubscribe(subscriptionId: string): void {
+  public async unsubscribe(subscriptionId: string): Promise<void> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized');
       return;
     }
 
-    this.websocketManager.unsubscribe(subscriptionId);
+    await this.websocketManager.unsubscribe(subscriptionId);
   }
 
   /**
@@ -728,7 +813,7 @@ export class TradeRepublicClient {
    * Check if WebSocket is connected
    */
   public isWebSocketConnected(): boolean {
-    return this.websocketManager ? this.websocketManager.isConnected() : false;
+    return this.websocketManager ? this.websocketManager.isWebSocketConnected() : false;
   }
 
   // =================
@@ -736,98 +821,119 @@ export class TradeRepublicClient {
   // =================
 
   /**
-   * Subscribe to order updates
+   * Subscribe to order updates (simplified)
    */
-  public subscribeToOrders(callback: (message: OrderUpdateMessage) => void): string | undefined {
+  public async subscribeToOrders(callback: (message: OrderUpdateMessage) => void): Promise<string | undefined> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
       return undefined;
     }
 
-    return this.websocketManager.subscribeOrders(callback);
+    // For now, use a basic subscription type that might work with TR
+    return await this.websocketManager.subscribe('orders', { type: 'orders' }, callback);
   }
 
   /**
-   * Subscribe to trade executions
+   * Subscribe to trade executions (simplified)
    */
-  public subscribeToExecutions(callback: (message: ExecutionMessage) => void): string | undefined {
+  public async subscribeToExecutions(callback: (message: ExecutionMessage) => void): Promise<string | undefined> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
       return undefined;
     }
 
-    return this.websocketManager.subscribeExecutions(callback);
+    return await this.websocketManager.subscribe('executions', { type: 'executions' }, callback);
   }
 
   /**
-   * Subscribe to market status updates
+   * Subscribe to market status updates (simplified)
    */
-  public subscribeToMarketStatus(venue: string, callback: (message: MarketStatusMessage) => void): string | undefined {
+  public async subscribeToMarketStatus(venue: string, callback: (message: MarketStatusMessage) => void): Promise<string | undefined> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
       return undefined;
     }
 
-    return this.websocketManager.subscribeMarketStatus(venue, callback);
+    return await this.websocketManager.subscribe('marketStatus', { type: 'marketStatus', venue }, callback);
   }
 
   /**
-   * Subscribe to news updates
+   * Subscribe to news updates (simplified)
    */
-  public subscribeToNews(callback: (message: NewsMessage) => void, isin?: string): string | undefined {
+  public async subscribeToNews(callback: (message: NewsMessage) => void, isin?: string): Promise<string | undefined> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
       return undefined;
     }
 
-    return this.websocketManager.subscribeNews(callback, isin);
+    const payload = isin ? { type: 'neonNews', id: isin } : { type: 'neonNews' };
+    return await this.websocketManager.subscribe('news', payload, callback);
   }
 
   /**
-   * Subscribe to watchlist updates
+   * Subscribe to watchlist updates (simplified)
    */
-  public subscribeToWatchlistUpdates(callback: (message: WatchlistUpdateMessage) => void): string | undefined {
+  public async subscribeToWatchlistUpdates(callback: (message: WatchlistUpdateMessage) => void): Promise<string | undefined> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
       return undefined;
     }
 
-    return this.websocketManager.subscribeWatchlist(callback);
+    return await this.websocketManager.subscribe('watchlist', { type: 'watchlist' }, callback);
   }
 
   /**
    * Bulk subscribe to price updates for multiple instruments
    */
-  public subscribeToPricesBulk(isins: string[], callback: (message: PriceUpdateMessage) => void): string[] {
+  public async subscribeToPricesBulk(isins: string[], callback: (message: PriceUpdateMessage) => void): Promise<string[]> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized. Call initializeWebSocket() first.');
       return [];
     }
 
-    return this.websocketManager.subscribePricesBulk(isins, callback);
+    const subscriptions: string[] = [];
+    for (const isin of isins) {
+      try {
+        const subId = await this.websocketManager.subscribeToPrices(isin, 'LSX', callback);
+        if (subId) {
+          subscriptions.push(subId);
+        }
+      } catch (error) {
+        logger.error('Failed to subscribe to price for ISIN', { isin, error });
+      }
+    }
+    return subscriptions;
   }
 
   /**
    * Unsubscribe from multiple subscriptions
    */
-  public unsubscribeMultiple(subscriptionIds: string[]): void {
+  public async unsubscribeMultiple(subscriptionIds: string[]): Promise<void> {
     if (!this.websocketManager) {
       logger.error('WebSocket not initialized');
       return;
     }
 
-    this.websocketManager.unsubscribeMultiple(subscriptionIds);
+    for (const subId of subscriptionIds) {
+      try {
+        await this.websocketManager.unsubscribe(subId);
+      } catch (error) {
+        logger.error('Failed to unsubscribe', { subscriptionId: subId, error });
+      }
+    }
   }
 
   /**
-   * Get all active WebSocket subscriptions
+   * Get all active WebSocket subscriptions (simplified)
    */
   public getActiveSubscriptions(): { id: string; channel: string; isin?: string }[] {
     if (!this.websocketManager) {
       return [];
     }
 
-    return this.websocketManager.getActiveSubscriptions();
+    // For now, return empty array - the new implementation doesn't expose this method
+    logger.debug('getActiveSubscriptions called - returning empty array (not implemented in new WS manager)');
+    return [];
   }
 
   // =================
@@ -883,21 +989,33 @@ export class TradeRepublicClient {
   }
 
   /**
-   * Ensure token is valid and refresh if needed
+   * Ensure token is valid and refresh if needed, with comprehensive validation
    */
   private async ensureValidToken(): Promise<void> {
-    const session = this.authManager.getSession();
-    if (!session) {
-      throw new AuthenticationError('No active session');
-    }
+    try {
+      // Use the comprehensive session validation
+      await this.ensureValidSession();
 
-    // Check if token expires within 5 minutes
-    const expirationBuffer = 5 * 60 * 1000; // 5 minutes
-    const willExpireSoon = Date.now() + expirationBuffer >= session.token.expiresAt;
-
-    if (willExpireSoon) {
-      logger.debug('Token expires soon, refreshing');
-      await this.refreshToken();
+      // Check if token should be auto-refreshed
+      if (this.authManager.shouldRefreshToken()) {
+        logger.debug('Token expires soon, attempting refresh');
+        const refreshed = await this.authManager.autoRefreshIfNeeded();
+        
+        if (refreshed) {
+          // Update auth header after successful refresh
+          this.httpClient.setAuthHeader(this.authManager.getAuthHeader());
+        } else {
+          throw new AuthenticationError(
+            'Token refresh failed. Session may need re-authentication.',
+            'TOKEN_REFRESH_FAILED'
+          );
+        }
+      }
+    } catch (error) {
+      logger.error('Token validation failed', {
+        error: error instanceof Error ? error.message : error,
+      });
+      throw error;
     }
   }
 }

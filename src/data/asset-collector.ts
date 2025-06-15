@@ -260,7 +260,7 @@ export class ComprehensiveAssetDataCollector {
   /**
    * Collect basic asset information from Trade Republic API
    */
-  private async collectBasicInfo(isin: string): Promise<Partial<ComprehensiveAssetInfo>> {
+  private async collectBasicInfo(isin: string): Promise<Partial<ComprehensiveAssetInfo> | null> {
     logger.debug('📊 Collecting basic asset info from Trade Republic API', { isin });
 
     try {
@@ -306,38 +306,11 @@ export class ComprehensiveAssetDataCollector {
         };
       }
     } catch (error) {
-      logger.warn('⚠️ Failed to collect basic info from Trade Republic, using fallback', { isin, error });
+      logger.error('❌ Failed to collect basic info from Trade Republic', { isin, error });
+      throw new Error(`Failed to collect asset info for ${isin}: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
 
-    // Fallback to mock data if API call fails
-    return {
-      isin,
-      name: `Asset ${isin}`,
-      symbol: isin.substring(2, 6).toUpperCase(),
-      type: 'stock',
-      currency: 'EUR',
-      country: 'DE',
-      homeExchange: 'XETRA',
-      exchanges: [{
-        exchangeCode: 'XETRA',
-        exchangeName: 'Deutsche Börse XETRA',
-        country: 'DE',
-        timezone: 'Europe/Berlin',
-        currency: 'EUR',
-        isPrimary: true,
-        tradingHours: {
-          openTime: '09:00',
-          closeTime: '17:30',
-          timezone: 'Europe/Berlin'
-        }
-      }],
-      tradingStatus: 'trading',
-      tradeRepublicTradable: true,
-      tradeRepublicFractional: true,
-      tradeRepublicSavingsPlan: true,
-      lastUpdated: new Date(),
-      dataProviders: ['fallback']
-    };
+    return null;
   }
 
   /**
@@ -381,31 +354,11 @@ export class ComprehensiveAssetDataCollector {
         };
       }
     } catch (error) {
-      logger.warn('⚠️ Failed to collect market data from Trade Republic, using fallback', { isin, error });
+      logger.error('❌ Failed to collect market data from Trade Republic', { isin, error });
+      throw new Error(`Failed to collect market data for ${isin}: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
 
-    // Fallback to mock data
-    const basePrice = 50 + Math.random() * 200;
-    const change = (Math.random() - 0.5) * 10;
-    
-    return {
-      currentPrice: basePrice,
-      bid: basePrice - 0.05,
-      ask: basePrice + 0.05,
-      spread: 0.10,
-      dayOpen: basePrice - change,
-      dayHigh: basePrice + Math.abs(change) * 0.8,
-      dayLow: basePrice - Math.abs(change) * 0.8,
-      dayChange: change,
-      dayChangePercentage: (change / basePrice) * 100,
-      volume: Math.floor(Math.random() * 1000000),
-      averageVolume: Math.floor(Math.random() * 500000),
-      week52High: basePrice * (1.2 + Math.random() * 0.3),
-      week52Low: basePrice * (0.7 + Math.random() * 0.2),
-      marketCap: Math.floor((basePrice * (1000000 + Math.random() * 9000000)) / 1000000) * 1000000,
-      lastUpdated: new Date(),
-      dataProviders: ['fallback']
-    };
+    return {};
   }
 
   /**
@@ -552,42 +505,14 @@ export class ComprehensiveAssetDataCollector {
         };
       }
     } catch (error) {
-      logger.warn('⚠️ Failed to collect historical data from Trade Republic, using fallback', { isin, error });
-    }
-
-    // Fallback to mock historical data
-    const endDate = new Date();
-    const startDate = new Date();
-    startDate.setFullYear(startDate.getFullYear() - 1); // 1 year of data
-
-    const data: any[] = [];
-    const basePrice = 50 + Math.random() * 200;
-    let currentPrice = basePrice;
-
-    for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-      const change = (Math.random() - 0.5) * 0.05; // 5% max daily change
-      const open = currentPrice;
-      const close = currentPrice * (1 + change);
-      const high = Math.max(open, close) * (1 + Math.random() * 0.02);
-      const low = Math.min(open, close) * (1 - Math.random() * 0.02);
-
-      data.push({
-        timestamp: new Date(d),
-        open,
-        high,
-        low,
-        close,
-        volume: Math.floor(Math.random() * 1000000),
-        adjustedClose: close,
-      });
-
-      currentPrice = close;
+      logger.error('❌ Failed to collect historical data from Trade Republic', { isin, error });
+      throw new Error(`Failed to collect historical data for ${isin}: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
 
     return {
       isin,
       interval: '1day',
-      data,
+      data: [],
       currency: 'EUR',
       timezone: 'Europe/Berlin',
       lastUpdated: new Date()
@@ -681,33 +606,46 @@ export class ComprehensiveAssetDataCollector {
   }
 
   /**
-   * Perform basic asset search (mock implementation)
+   * Perform basic asset search using Trade Republic API
    */
   private async performBasicSearch(query: AssetSearchQuery): Promise<{ assets: Array<{ isin: string; name: string; symbol: string; type: string }>; total: number }> {
-    // Mock search results
-    const mockAssets = [
-      { isin: 'US0378331005', name: 'Apple Inc.', symbol: 'AAPL', type: 'stock' },
-      { isin: 'US5949181045', name: 'Microsoft Corporation', symbol: 'MSFT', type: 'stock' },
-      { isin: 'US02079K3059', name: 'Alphabet Inc.', symbol: 'GOOGL', type: 'stock' },
-      { isin: 'US0231351067', name: 'Amazon.com Inc.', symbol: 'AMZN', type: 'stock' },
-      { isin: 'US88160R1014', name: 'Tesla Inc.', symbol: 'TSLA', type: 'stock' },
-    ];
+    try {
+      const sessionToken = await this.getSessionToken();
+      
+      // Use Trade Republic search endpoint
+      const response: any = await this.httpClient.get('/api/v1/search', {
+        headers: {
+          'Authorization': `Bearer ${sessionToken}`,
+          'Content-Type': 'application/json'
+        },
+        params: {
+          q: query.query || '',
+          limit: query.limit || 50,
+          offset: query.offset || 0
+        }
+      });
 
-    let filtered = mockAssets;
-    
-    if (query.query) {
-      filtered = filtered.filter(asset => 
-        asset.name.toLowerCase().includes(query.query!.toLowerCase()) ||
-        asset.symbol.toLowerCase().includes(query.query!.toLowerCase())
-      );
+      if (response.data && response.data.results) {
+        const assets = response.data.results.map((result: any) => ({
+          isin: result.isin,
+          name: result.name,
+          symbol: result.symbol || result.shortName,
+          type: this.mapInstrumentType(result.typeId || result.type)
+        }));
+
+        return {
+          assets,
+          total: response.data.total || assets.length
+        };
+      }
+    } catch (error) {
+      logger.error('❌ Failed to search assets from Trade Republic', { query, error });
+      throw new Error(`Failed to search assets: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
 
-    const limit = query.limit || 50;
-    const offset = query.offset || 0;
-    
     return {
-      assets: filtered.slice(offset, offset + limit),
-      total: filtered.length
+      assets: [],
+      total: 0
     };
   }
 

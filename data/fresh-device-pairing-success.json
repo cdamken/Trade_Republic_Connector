@@ -1,0 +1,10 @@
+{
+  "freshDevicePairingCompleted": true,
+  "authenticationSuccessful": true,
+  "userId": "16f1ff6b-b686-4caf-bec3-ceed7ba1e556",
+  "sessionId": "000e6ba5-e610-4a6f-afcb-028720f2156f",
+  "deviceId": "07b1c283-c297-45b4-ad85-5819af419b79",
+  "authenticatedAt": "2025-06-15T09:22:08.267Z",
+  "tokenExpiresAt": "2025-06-15T09:26:58.263Z",
+  "twoFactorVerified": true
+}

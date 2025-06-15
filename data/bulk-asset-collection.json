@@ -1,0 +1,2462 @@
+{
+  "discoveredAssets": [
+    {
+      "isin": "US0378331005",
+      "currentPrice": "170.08",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:55.777Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848396763,
+          "price": "170.08",
+          "size": 29
+        },
+        "ask": {
+          "time": 1749848396763,
+          "price": "170.24",
+          "size": 29
+        },
+        "last": {
+          "time": 1749848396763,
+          "price": "170.08",
+          "size": 29
+        },
+        "pre": {
+          "time": 1749761999356,
+          "price": "171.82",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600790,
+          "price": "170.32",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US5949181045",
+      "currentPrice": "410.2",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:55.778Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848394830,
+          "price": "410.2",
+          "size": 50
+        },
+        "ask": {
+          "time": 1749848394830,
+          "price": "410.55",
+          "size": 50
+        },
+        "last": {
+          "time": 1749848394830,
+          "price": "410.2",
+          "size": 50
+        },
+        "pre": {
+          "time": 1749761990924,
+          "price": "412.85",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600819,
+          "price": "409.65",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US02079K3059",
+      "currentPrice": "151.26",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:55.778Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390283,
+          "price": "151.26",
+          "size": 660
+        },
+        "ask": {
+          "time": 1749848390283,
+          "price": "151.42",
+          "size": 660
+        },
+        "last": {
+          "time": 1749848390283,
+          "price": "151.26",
+          "size": 660
+        },
+        "pre": {
+          "time": 1749761990926,
+          "price": "151.5",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601686,
+          "price": "149.64",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US0231351067",
+      "currentPrice": "183.18",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:55.778Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390280,
+          "price": "183.18",
+          "size": 544
+        },
+        "ask": {
+          "time": 1749848390280,
+          "price": "183.36",
+          "size": 544
+        },
+        "last": {
+          "time": 1749848390280,
+          "price": "183.18",
+          "size": 544
+        },
+        "pre": {
+          "time": 1749761990934,
+          "price": "183.9",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600817,
+          "price": "180.92",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US88160R1014",
+      "currentPrice": "281.35",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:55.779Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848394537,
+          "price": "281.35",
+          "size": 1
+        },
+        "ask": {
+          "time": 1749848394537,
+          "price": "281.55",
+          "size": 1
+        },
+        "last": {
+          "time": 1749848394537,
+          "price": "281.35",
+          "size": 1
+        },
+        "pre": {
+          "time": 1749761998053,
+          "price": "275.4",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600255,
+          "price": "270.0",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US30303M1027",
+      "currentPrice": "589.9",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:56.808Z",
+      "priceData": {
+        "bid": {
+          "time": 1749844748647,
+          "price": "589.9",
+          "size": 418
+        },
+        "ask": {
+          "time": 1749844748647,
+          "price": "590.3",
+          "size": 418
+        },
+        "last": {
+          "time": 1749844748647,
+          "price": "589.9",
+          "size": 418
+        },
+        "pre": {
+          "time": 1749761990487,
+          "price": "597.9",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601139,
+          "price": "589.9",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US64110L1061",
+      "currentPrice": "1046.8",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:56.808Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390717,
+          "price": "1046.8",
+          "size": 95
+        },
+        "ask": {
+          "time": 1749848390717,
+          "price": "1048.0",
+          "size": 95
+        },
+        "last": {
+          "time": 1749848390717,
+          "price": "1046.8",
+          "size": 95
+        },
+        "pre": {
+          "time": 1749761990437,
+          "price": "1047.6",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600809,
+          "price": "1042.4",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US67066G1040",
+      "currentPrice": "122.72",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:56.810Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848396840,
+          "price": "122.72",
+          "size": 4
+        },
+        "ask": {
+          "time": 1749848396840,
+          "price": "122.84",
+          "size": 4
+        },
+        "last": {
+          "time": 1749848396840,
+          "price": "122.72",
+          "size": 4
+        },
+        "pre": {
+          "time": 1749761998960,
+          "price": "124.96",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600287,
+          "price": "123.16",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US4781601046",
+      "currentPrice": "135.76",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:56.810Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390203,
+          "price": "135.76",
+          "size": 743
+        },
+        "ask": {
+          "time": 1749848390203,
+          "price": "135.98",
+          "size": 743
+        },
+        "last": {
+          "time": 1749848390203,
+          "price": "135.76",
+          "size": 743
+        },
+        "pre": {
+          "time": 1749761990864,
+          "price": "134.52",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792618410,
+          "price": "134.16",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US1912161007",
+      "currentPrice": "61.49",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:56.810Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390267,
+          "price": "61.49",
+          "size": 1607
+        },
+        "ask": {
+          "time": 1749848390267,
+          "price": "61.55",
+          "size": 1607
+        },
+        "last": {
+          "time": 1749848390267,
+          "price": "61.49",
+          "size": 1607
+        },
+        "pre": {
+          "time": 1749758341092,
+          "price": "62.37",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792720335,
+          "price": "62.18",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US46625H1005",
+      "currentPrice": "229.1",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:57.880Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390199,
+          "price": "229.1",
+          "size": 433
+        },
+        "ask": {
+          "time": 1749848390199,
+          "price": "229.3",
+          "size": 433
+        },
+        "last": {
+          "time": 1749848390199,
+          "price": "229.1",
+          "size": 433
+        },
+        "pre": {
+          "time": 1749761990858,
+          "price": "230.95",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792627681,
+          "price": "228.15",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US0605051046",
+      "currentPrice": "38.115",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:57.880Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390265,
+          "price": "38.115",
+          "size": 1300
+        },
+        "ask": {
+          "time": 1749848390265,
+          "price": "38.185",
+          "size": 1300
+        },
+        "last": {
+          "time": 1749848390265,
+          "price": "38.115",
+          "size": 1300
+        },
+        "pre": {
+          "time": 1749761990925,
+          "price": "38.45",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601045,
+          "price": "38.07",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US9497461015",
+      "currentPrice": "62.71",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:57.880Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390275,
+          "price": "62.71",
+          "size": 785
+        },
+        "ask": {
+          "time": 1749848390275,
+          "price": "62.83",
+          "size": 785
+        },
+        "last": {
+          "time": 1749848390275,
+          "price": "62.71",
+          "size": 785
+        },
+        "pre": {
+          "time": 1749761990927,
+          "price": "63.69",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600817,
+          "price": "62.41",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US38141G1040",
+      "currentPrice": "529.8",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:57.880Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390253,
+          "price": "529.8",
+          "size": 186
+        },
+        "ask": {
+          "time": 1749848390253,
+          "price": "530.8",
+          "size": 186
+        },
+        "last": {
+          "time": 1749848390253,
+          "price": "529.8",
+          "size": 186
+        },
+        "pre": {
+          "time": 1749761990925,
+          "price": "538.7",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792608155,
+          "price": "530.0",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US6174464486",
+      "currentPrice": "112.24",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:57.881Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390264,
+          "price": "112.24",
+          "size": 441
+        },
+        "ask": {
+          "time": 1749848390264,
+          "price": "112.48",
+          "size": 441
+        },
+        "last": {
+          "time": 1749848390264,
+          "price": "112.24",
+          "size": 441
+        },
+        "pre": {
+          "time": 1749761990924,
+          "price": "113.38",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601044,
+          "price": "112.46",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US92826C8394",
+      "currentPrice": "305.65",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:58.905Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390226,
+          "price": "305.65",
+          "size": 313
+        },
+        "ask": {
+          "time": 1749848390226,
+          "price": "306.25",
+          "size": 313
+        },
+        "last": {
+          "time": 1749848390226,
+          "price": "305.65",
+          "size": 313
+        },
+        "pre": {
+          "time": 1749761990920,
+          "price": "319.65",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792610516,
+          "price": "315.85",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US57636Q1040",
+      "currentPrice": "486.1",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:58.905Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390225,
+          "price": "486.1",
+          "size": 10
+        },
+        "ask": {
+          "time": 1749848390225,
+          "price": "487.0",
+          "size": 10
+        },
+        "last": {
+          "time": 1749848390225,
+          "price": "486.1",
+          "size": 10
+        },
+        "pre": {
+          "time": 1749761990864,
+          "price": "510.1",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601621,
+          "price": "503.0",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0007164600",
+      "currentPrice": "253.35",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:58.905Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848347745,
+          "price": "253.35",
+          "size": 2
+        },
+        "ask": {
+          "time": 1749848347745,
+          "price": "254.3",
+          "size": 2
+        },
+        "last": {
+          "time": 1749848347745,
+          "price": "253.35",
+          "size": 2
+        },
+        "pre": {
+          "time": 1749761949236,
+          "price": "260.5",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600716,
+          "price": "257.9",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0007236101",
+      "currentPrice": "213.7",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:58.905Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848336262,
+          "price": "213.7",
+          "size": 12
+        },
+        "ask": {
+          "time": 1749848336262,
+          "price": "214.3",
+          "size": 12
+        },
+        "last": {
+          "time": 1749848336262,
+          "price": "213.7",
+          "size": 12
+        },
+        "pre": {
+          "time": 1749761949237,
+          "price": "217.4",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792605053,
+          "price": "214.1",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0005190003",
+      "currentPrice": "74.74",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:58.905Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848317756,
+          "price": "74.74",
+          "size": 327
+        },
+        "ask": {
+          "time": 1749848317756,
+          "price": "74.84",
+          "size": 327
+        },
+        "last": {
+          "time": 1749848317756,
+          "price": "74.74",
+          "size": 327
+        },
+        "pre": {
+          "time": 1749761949232,
+          "price": "76.44",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600254,
+          "price": "75.62",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0007100000",
+      "currentPrice": "50.52",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:59.929Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848248484,
+          "price": "50.52",
+          "size": 486
+        },
+        "ask": {
+          "time": 1749848248484,
+          "price": "50.72",
+          "size": 486
+        },
+        "last": {
+          "time": 1749848248484,
+          "price": "50.52",
+          "size": 486
+        },
+        "pre": {
+          "time": 1749761949242,
+          "price": "51.41",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792640474,
+          "price": "50.89",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0007664039",
+      "currentPrice": "88.62",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:59.930Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848368919,
+          "price": "88.62",
+          "size": 276
+        },
+        "ask": {
+          "time": 1749848368919,
+          "price": "89.02",
+          "size": 276
+        },
+        "last": {
+          "time": 1749848368919,
+          "price": "88.62",
+          "size": 276
+        },
+        "pre": {
+          "time": 1749761949234,
+          "price": "90.56",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792648656,
+          "price": "89.46",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE000A1EWWW0",
+      "currentPrice": "198.8",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:59.930Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848248482,
+          "price": "198.8",
+          "size": 122
+        },
+        "ask": {
+          "time": 1749848248482,
+          "price": "199.8",
+          "size": 122
+        },
+        "last": {
+          "time": 1749848248482,
+          "price": "198.8",
+          "size": 122
+        },
+        "pre": {
+          "time": 1749761949240,
+          "price": "205.5",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792611480,
+          "price": "202.4",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE000BAY0017",
+      "currentPrice": "27.32",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:59.931Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848305492,
+          "price": "27.32",
+          "size": 20
+        },
+        "ask": {
+          "time": 1749848305492,
+          "price": "27.51",
+          "size": 20
+        },
+        "last": {
+          "time": 1749848305492,
+          "price": "27.32",
+          "size": 20
+        },
+        "pre": {
+          "time": 1749761949228,
+          "price": "27.71",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600716,
+          "price": "27.375",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0005140008",
+      "currentPrice": "23.8",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:37:59.931Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848392833,
+          "price": "23.8",
+          "size": 6
+        },
+        "ask": {
+          "time": 1749848392833,
+          "price": "23.82",
+          "size": 6
+        },
+        "last": {
+          "time": 1749848392833,
+          "price": "23.8",
+          "size": 6
+        },
+        "pre": {
+          "time": 1749761949241,
+          "price": "24.35",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792676529,
+          "price": "23.935",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0008404005",
+      "currentPrice": "339.0",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:00.953Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848307722,
+          "price": "339.0",
+          "size": 73
+        },
+        "ask": {
+          "time": 1749848307722,
+          "price": "341.0",
+          "size": 73
+        },
+        "last": {
+          "time": 1749848307722,
+          "price": "339.0",
+          "size": 73
+        },
+        "pre": {
+          "time": 1749761978636,
+          "price": "342.5",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792771597,
+          "price": "337.5",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE000BASF111",
+      "currentPrice": "41.84",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:00.954Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848347461,
+          "price": "41.84",
+          "size": 20
+        },
+        "ask": {
+          "time": 1749848347461,
+          "price": "42.03",
+          "size": 20
+        },
+        "last": {
+          "time": 1749848347461,
+          "price": "41.84",
+          "size": 20
+        },
+        "pre": {
+          "time": 1749761949241,
+          "price": "42.61",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792640763,
+          "price": "41.71",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0008232125",
+      "currentPrice": "6.76",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:00.955Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848313978,
+          "price": "6.76",
+          "size": 200
+        },
+        "ask": {
+          "time": 1749848313978,
+          "price": "6.81",
+          "size": 200
+        },
+        "last": {
+          "time": 1749848313978,
+          "price": "6.76",
+          "size": 200
+        },
+        "pre": {
+          "time": 1749761862955,
+          "price": "7.06",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792603887,
+          "price": "7.06",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0006231004",
+      "currentPrice": "35.175",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:00.956Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848287243,
+          "price": "35.175",
+          "size": 5
+        },
+        "ask": {
+          "time": 1749848287243,
+          "price": "35.27",
+          "size": 5
+        },
+        "last": {
+          "time": 1749848287243,
+          "price": "35.175",
+          "size": 5
+        },
+        "pre": {
+          "time": 1749761983420,
+          "price": "35.615",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600712,
+          "price": "35.045",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE000A0D6554",
+      "currentPrice": "17.18",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:03.958Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848248481,
+          "price": "17.18",
+          "size": 286
+        },
+        "ask": {
+          "time": 1749848248481,
+          "price": "17.32",
+          "size": 286
+        },
+        "last": {
+          "time": 1749848248481,
+          "price": "17.18",
+          "size": 286
+        },
+        "pre": {
+          "time": 1749761949239,
+          "price": "17.49",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792621206,
+          "price": "17.36",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "NL0010273215",
+      "currentPrice": "659.3",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:03.959Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848355357,
+          "price": "659.3",
+          "size": 1
+        },
+        "ask": {
+          "time": 1749848355357,
+          "price": "660.5",
+          "size": 1
+        },
+        "last": {
+          "time": 1749848355357,
+          "price": "659.3",
+          "size": 1
+        },
+        "pre": {
+          "time": 1749761856940,
+          "price": "677.4",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792677092,
+          "price": "668.9",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "NL0000009165",
+      "currentPrice": "77.96",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:03.959Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848249491,
+          "price": "77.96",
+          "size": 62
+        },
+        "ask": {
+          "time": 1749848249491,
+          "price": "78.1",
+          "size": 62
+        },
+        "last": {
+          "time": 1749848249491,
+          "price": "77.96",
+          "size": 62
+        },
+        "pre": {
+          "time": 1749761953265,
+          "price": "80.18",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792602291,
+          "price": "78.8",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "NL0011821202",
+      "currentPrice": "17.912",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:03.959Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848249490,
+          "price": "17.912",
+          "size": 274
+        },
+        "ask": {
+          "time": 1749848249490,
+          "price": "17.96",
+          "size": 274
+        },
+        "last": {
+          "time": 1749848249490,
+          "price": "17.912",
+          "size": 274
+        },
+        "pre": {
+          "time": 1749761953265,
+          "price": "18.27",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792610231,
+          "price": "18.11",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "IE00B4L5Y983",
+      "currentPrice": "98.726",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:06.969Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848399427,
+          "price": "98.726",
+          "size": 1506
+        },
+        "ask": {
+          "time": 1749848399427,
+          "price": "98.856",
+          "size": 1506
+        },
+        "last": {
+          "time": 1749848399427,
+          "price": "98.726",
+          "size": 1506
+        },
+        "pre": {
+          "time": 1749761983777,
+          "price": "99.596",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601103,
+          "price": "98.77",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE000A0F5UH1",
+      "currentPrice": "30.525",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:06.970Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848260548,
+          "price": "30.525",
+          "size": 325
+        },
+        "ask": {
+          "time": 1749848260548,
+          "price": "30.72",
+          "size": 325
+        },
+        "last": {
+          "time": 1749848260548,
+          "price": "30.525",
+          "size": 325
+        },
+        "pre": {
+          "time": 1749761915139,
+          "price": "30.755",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792606716,
+          "price": "30.335",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "IE00B3RBWM25",
+      "currentPrice": "126.32",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:06.970Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848227330,
+          "price": "126.32",
+          "size": 78
+        },
+        "ask": {
+          "time": 1749848227330,
+          "price": "126.66",
+          "size": 78
+        },
+        "last": {
+          "time": 1749848227330,
+          "price": "126.32",
+          "size": 78
+        },
+        "pre": {
+          "time": 1749761981369,
+          "price": "127.7",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792602422,
+          "price": "126.56",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "IE00B5BMR087",
+      "currentPrice": "551.26",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:06.971Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848399429,
+          "price": "551.26",
+          "size": 270
+        },
+        "ask": {
+          "time": 1749848399429,
+          "price": "551.98",
+          "size": 270
+        },
+        "last": {
+          "time": 1749848399429,
+          "price": "551.26",
+          "size": 270
+        },
+        "pre": {
+          "time": 1749761974923,
+          "price": "555.6",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601105,
+          "price": "551.1",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "LU0274208692",
+      "currentPrice": "105.815",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:06.971Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848244672,
+          "price": "105.815",
+          "size": 93
+        },
+        "ask": {
+          "time": 1749848244672,
+          "price": "106.215",
+          "size": 93
+        },
+        "last": {
+          "time": 1749848244672,
+          "price": "105.815",
+          "size": 93
+        },
+        "pre": {
+          "time": 1749761826775,
+          "price": "106.91",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600751,
+          "price": "105.915",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "LU0392494562",
+      "currentPrice": "72.524",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:07.995Z",
+      "priceData": {
+        "bid": {
+          "time": 1682017213677,
+          "price": "72.524",
+          "size": 341
+        },
+        "ask": {
+          "time": 1682017213677,
+          "price": "73.046",
+          "size": 341
+        },
+        "last": {
+          "time": 1682017213677,
+          "price": "72.524",
+          "size": 341
+        },
+        "pre": {
+          "time": 1681937998854,
+          "price": "73.154",
+          "size": 0
+        },
+        "open": {
+          "time": 1681968602568,
+          "price": "73.006",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "IE00BKM4GZ66",
+      "currentPrice": "32.943",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:07.996Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848398445,
+          "price": "32.943",
+          "size": 150
+        },
+        "ask": {
+          "time": 1749848398445,
+          "price": "33.062",
+          "size": 150
+        },
+        "last": {
+          "time": 1749848398445,
+          "price": "32.943",
+          "size": 150
+        },
+        "pre": {
+          "time": 1749761971804,
+          "price": "33.421",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601743,
+          "price": "32.908",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "LU0274211480",
+      "currentPrice": "219.7",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:07.996Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848248478,
+          "price": "219.7",
+          "size": 674
+        },
+        "ask": {
+          "time": 1749848248478,
+          "price": "219.95",
+          "size": 674
+        },
+        "last": {
+          "time": 1749848248478,
+          "price": "219.7",
+          "size": 674
+        },
+        "pre": {
+          "time": 1749761880041,
+          "price": "222.65",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792609000,
+          "price": "219.25",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US0846707026",
+      "currentPrice": "421.95",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:07.996Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848397762,
+          "price": "421.95",
+          "size": 237
+        },
+        "ask": {
+          "time": 1749848397762,
+          "price": "422.8",
+          "size": 237
+        },
+        "last": {
+          "time": 1749848397762,
+          "price": "421.95",
+          "size": 237
+        },
+        "pre": {
+          "time": 1749761995116,
+          "price": "422.5",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792603378,
+          "price": "420.3",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "IE00B52VJ196",
+      "currentPrice": "70.0",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:07.996Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848275607,
+          "price": "70.0",
+          "size": 70
+        },
+        "ask": {
+          "time": 1749848275607,
+          "price": "70.13",
+          "size": 70
+        },
+        "last": {
+          "time": 1749848275607,
+          "price": "70.0",
+          "size": 70
+        },
+        "pre": {
+          "time": 1749761877034,
+          "price": "71.01",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600727,
+          "price": "69.79",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US9311421039",
+      "currentPrice": "81.75",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:09.021Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390264,
+          "price": "81.75",
+          "size": 1222
+        },
+        "ask": {
+          "time": 1749848390264,
+          "price": "81.83",
+          "size": 1222
+        },
+        "last": {
+          "time": 1749848390264,
+          "price": "81.75",
+          "size": 1222
+        },
+        "pre": {
+          "time": 1749761990925,
+          "price": "81.83",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792603831,
+          "price": "81.19",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US1729674242",
+      "currentPrice": "66.1",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:09.022Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390269,
+          "price": "66.1",
+          "size": 743
+        },
+        "ask": {
+          "time": 1749848390269,
+          "price": "66.24",
+          "size": 743
+        },
+        "last": {
+          "time": 1749848390269,
+          "price": "66.1",
+          "size": 743
+        },
+        "pre": {
+          "time": 1749761990925,
+          "price": "67.32",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792633734,
+          "price": "66.76",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US2441991054",
+      "currentPrice": "440.95",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:09.022Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848370172,
+          "price": "440.95",
+          "size": 112
+        },
+        "ask": {
+          "time": 1749848370172,
+          "price": "441.85",
+          "size": 112
+        },
+        "last": {
+          "time": 1749848370172,
+          "price": "440.95",
+          "size": 112
+        },
+        "pre": {
+          "time": 1749761990925,
+          "price": "448.0",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792607310,
+          "price": "439.85",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US6541061031",
+      "currentPrice": "52.56",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:09.022Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390211,
+          "price": "52.56",
+          "size": 1846
+        },
+        "ask": {
+          "time": 1749848390211,
+          "price": "52.66",
+          "size": 1846
+        },
+        "last": {
+          "time": 1749848390211,
+          "price": "52.56",
+          "size": 1846
+        },
+        "pre": {
+          "time": 1749761990876,
+          "price": "54.17",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601636,
+          "price": "53.38",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US58933Y1055",
+      "currentPrice": "70.6",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:09.023Z",
+      "priceData": {
+        "bid": {
+          "time": 1749844669456,
+          "price": "70.6",
+          "size": 30
+        },
+        "ask": {
+          "time": 1749844669456,
+          "price": "70.8",
+          "size": 30
+        },
+        "last": {
+          "time": 1749844669456,
+          "price": "70.6",
+          "size": 30
+        },
+        "pre": {
+          "time": 1749761990915,
+          "price": "70.5",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600798,
+          "price": "70.2",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US7427181091",
+      "currentPrice": "138.56",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:10.046Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390227,
+          "price": "138.56",
+          "size": 5
+        },
+        "ask": {
+          "time": 1749848390227,
+          "price": "138.8",
+          "size": 5
+        },
+        "last": {
+          "time": 1749848390227,
+          "price": "138.56",
+          "size": 5
+        },
+        "pre": {
+          "time": 1749761990870,
+          "price": "140.36",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601632,
+          "price": "140.26",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US4592001014",
+      "currentPrice": "240.2",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:10.047Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390741,
+          "price": "240.2",
+          "size": 207
+        },
+        "ask": {
+          "time": 1749848390741,
+          "price": "240.45",
+          "size": 207
+        },
+        "last": {
+          "time": 1749848390741,
+          "price": "240.2",
+          "size": 207
+        },
+        "pre": {
+          "time": 1749761990460,
+          "price": "241.95",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792611996,
+          "price": "242.05",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US0231351067",
+      "currentPrice": "183.18",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:10.047Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390280,
+          "price": "183.18",
+          "size": 544
+        },
+        "ask": {
+          "time": 1749848390280,
+          "price": "183.36",
+          "size": 544
+        },
+        "last": {
+          "time": 1749848390280,
+          "price": "183.18",
+          "size": 544
+        },
+        "pre": {
+          "time": 1749761990934,
+          "price": "183.9",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600817,
+          "price": "180.92",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US17275R1023",
+      "currentPrice": "55.5",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:10.047Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390762,
+          "price": "55.5",
+          "size": 892
+        },
+        "ask": {
+          "time": 1749848390762,
+          "price": "55.56",
+          "size": 892
+        },
+        "last": {
+          "time": 1749848390762,
+          "price": "55.5",
+          "size": 892
+        },
+        "pre": {
+          "time": 1749761990483,
+          "price": "56.03",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792612974,
+          "price": "55.39",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US00724F1012",
+      "currentPrice": "338.55",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:10.048Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390751,
+          "price": "338.55",
+          "size": 140
+        },
+        "ask": {
+          "time": 1749848390751,
+          "price": "339.25",
+          "size": 140
+        },
+        "last": {
+          "time": 1749848390751,
+          "price": "338.55",
+          "size": 140
+        },
+        "pre": {
+          "time": 1749761999037,
+          "price": "357.75",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600255,
+          "price": "349.95",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US79466L3024",
+      "currentPrice": "223.7",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:11.070Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848390737,
+          "price": "223.7",
+          "size": 436
+        },
+        "ask": {
+          "time": 1749848390737,
+          "price": "223.95",
+          "size": 436
+        },
+        "last": {
+          "time": 1749848390737,
+          "price": "223.7",
+          "size": 436
+        },
+        "pre": {
+          "time": 1749761990456,
+          "price": "229.5",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792610972,
+          "price": "226.7",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "NL0000235190",
+      "currentPrice": "160.28",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:11.071Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848389331,
+          "price": "160.28",
+          "size": 2
+        },
+        "ask": {
+          "time": 1749848389331,
+          "price": "160.36",
+          "size": 2
+        },
+        "last": {
+          "time": 1749848389331,
+          "price": "160.28",
+          "size": 2
+        },
+        "pre": {
+          "time": 1749761949240,
+          "price": "162.7",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600719,
+          "price": "161.34",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "FR0000120271",
+      "currentPrice": "55.26",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:11.071Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848393994,
+          "price": "55.26",
+          "size": 92
+        },
+        "ask": {
+          "time": 1749848393994,
+          "price": "55.35",
+          "size": 92
+        },
+        "last": {
+          "time": 1749848393994,
+          "price": "55.26",
+          "size": 92
+        },
+        "pre": {
+          "time": 1749761953264,
+          "price": "54.64",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792728158,
+          "price": "54.64",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "CH0038863350",
+      "currentPrice": "89.71",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:11.071Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848364984,
+          "price": "89.71",
+          "size": 1
+        },
+        "ask": {
+          "time": 1749848364984,
+          "price": "89.86",
+          "size": 1
+        },
+        "last": {
+          "time": 1749848364984,
+          "price": "89.71",
+          "size": 1
+        },
+        "pre": {
+          "time": 1749761945217,
+          "price": "90.82",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792623783,
+          "price": "90.0",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "CH0012032048",
+      "currentPrice": "284.4",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:11.072Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848276613,
+          "price": "284.4",
+          "size": 17
+        },
+        "ask": {
+          "time": 1749848276613,
+          "price": "285.1",
+          "size": 17
+        },
+        "last": {
+          "time": 1749848276613,
+          "price": "284.4",
+          "size": 17
+        },
+        "pre": {
+          "time": 1749761945217,
+          "price": "289.4",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792602704,
+          "price": "286.6",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "FR0000121014",
+      "currentPrice": "460.4",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:12.094Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848399070,
+          "price": "460.4",
+          "size": 2
+        },
+        "ask": {
+          "time": 1749848399070,
+          "price": "460.6",
+          "size": 2
+        },
+        "last": {
+          "time": 1749848399070,
+          "price": "460.4",
+          "size": 2
+        },
+        "pre": {
+          "time": 1749761974850,
+          "price": "468.6",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792726154,
+          "price": "468.6",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "IT0003128367",
+      "currentPrice": "7.941",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:12.096Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848368920,
+          "price": "7.941",
+          "size": 623
+        },
+        "ask": {
+          "time": 1749848368920,
+          "price": "7.965",
+          "size": 623
+        },
+        "last": {
+          "time": 1749848368920,
+          "price": "7.941",
+          "size": 623
+        },
+        "pre": {
+          "time": 1749761949242,
+          "price": "8.03",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792611103,
+          "price": "7.971",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "ES0113900J37",
+      "currentPrice": "6.882",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:12.096Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848248483,
+          "price": "6.882",
+          "size": 715
+        },
+        "ask": {
+          "time": 1749848248483,
+          "price": "6.891",
+          "size": 715
+        },
+        "last": {
+          "time": 1749848248483,
+          "price": "6.882",
+          "size": 715
+        },
+        "pre": {
+          "time": 1749761949241,
+          "price": "6.995",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601594,
+          "price": "6.871",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "GB0009252882",
+      "currentPrice": "16.892",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:12.096Z",
+      "priceData": {
+        "bid": {
+          "time": 1658166053957,
+          "price": "16.892",
+          "size": 247
+        },
+        "ask": {
+          "time": 1658166053957,
+          "price": "17.028",
+          "size": 247
+        },
+        "last": {
+          "time": 1658166053957,
+          "price": "16.892",
+          "size": 247
+        },
+        "pre": {
+          "time": 1657908331455,
+          "price": "20.205",
+          "size": 0
+        },
+        "open": {
+          "time": 1658121259719,
+          "price": "16.758",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "IE00B3XXRP09",
+      "currentPrice": "98.196",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:15.098Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848399432,
+          "price": "98.196",
+          "size": 1516
+        },
+        "ask": {
+          "time": 1749848399432,
+          "price": "98.354",
+          "size": 1516
+        },
+        "last": {
+          "time": 1749848399432,
+          "price": "98.196",
+          "size": 1516
+        },
+        "pre": {
+          "time": 1749761974936,
+          "price": "98.972",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601103,
+          "price": "98.176",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0002635307",
+      "currentPrice": "54.68",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:15.099Z",
+      "priceData": {
+        "bid": {
+          "time": 1749844358166,
+          "price": "54.68",
+          "size": 270
+        },
+        "ask": {
+          "time": 1749844358166,
+          "price": "54.72",
+          "size": 270
+        },
+        "last": {
+          "time": 1749844358166,
+          "price": "54.68",
+          "size": 270
+        },
+        "pre": {
+          "time": 1749761876017,
+          "price": "55.48",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792610979,
+          "price": "54.51",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "LU0378434079",
+      "currentPrice": "66.59",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:15.099Z",
+      "priceData": {
+        "bid": {
+          "time": 1599170400000,
+          "price": "66.59",
+          "size": 734
+        },
+        "ask": {
+          "time": 1599170400000,
+          "price": "66.59",
+          "size": 734
+        },
+        "last": {
+          "time": 1599170400000,
+          "price": "66.59",
+          "size": 734
+        },
+        "pre": {
+          "time": 1599084000000,
+          "price": "67.59",
+          "size": 0
+        },
+        "open": {
+          "time": 1599084000000,
+          "price": "67.59",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "LU0274212538",
+      "currentPrice": "39.125",
+      "exchange": "LSX",
+      "discoveryMethod": "websocket_price_verification",
+      "discoveredAt": "2025-06-15T09:38:15.100Z",
+      "priceData": {
+        "bid": {
+          "time": 1749848275601,
+          "price": "39.125",
+          "size": 126
+        },
+        "ask": {
+          "time": 1749848275601,
+          "price": "39.26",
+          "size": 126
+        },
+        "last": {
+          "time": 1749848275601,
+          "price": "39.125",
+          "size": 126
+        },
+        "pre": {
+          "time": 1749761877029,
+          "price": "39.79",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600747,
+          "price": "39.11",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    }
+  ],
+  "portfolioData": [],
+  "metadata": {
+    "totalAssetsDiscovered": 66,
+    "validAssetsWithData": 66,
+    "portfolioItems": 0,
+    "discoveryStarted": "2025-06-15T09:37:50.408Z",
+    "discoveryCompleted": "2025-06-15T09:38:26.113Z",
+    "durationMs": 35705,
+    "websocketStatus": {
+      "connected": true,
+      "authenticated": true,
+      "subscriptions": 0,
+      "reconnectAttempts": 0,
+      "initialized": true
+    }
+  }
+}

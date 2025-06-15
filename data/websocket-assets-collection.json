@@ -1,0 +1,361 @@
+{
+  "portfolio": [],
+  "priceUpdates": [
+    {
+      "isin": "US0378331005",
+      "receivedAt": "2025-06-15T09:32:20.844Z",
+      "data": {
+        "bid": {
+          "time": 1749848396763,
+          "price": "170.08",
+          "size": 29
+        },
+        "ask": {
+          "time": 1749848396763,
+          "price": "170.24",
+          "size": 29
+        },
+        "last": {
+          "time": 1749848396763,
+          "price": "170.08",
+          "size": 29
+        },
+        "pre": {
+          "time": 1749761999356,
+          "price": "171.82",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600790,
+          "price": "170.32",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US5949181045",
+      "receivedAt": "2025-06-15T09:32:20.943Z",
+      "data": {
+        "bid": {
+          "time": 1749848394830,
+          "price": "410.2",
+          "size": 50
+        },
+        "ask": {
+          "time": 1749848394830,
+          "price": "410.55",
+          "size": 50
+        },
+        "last": {
+          "time": 1749848394830,
+          "price": "410.2",
+          "size": 50
+        },
+        "pre": {
+          "time": 1749761990924,
+          "price": "412.85",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600819,
+          "price": "409.65",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US02079K3059",
+      "receivedAt": "2025-06-15T09:32:21.046Z",
+      "data": {
+        "bid": {
+          "time": 1749848390283,
+          "price": "151.26",
+          "size": 660
+        },
+        "ask": {
+          "time": 1749848390283,
+          "price": "151.42",
+          "size": 660
+        },
+        "last": {
+          "time": 1749848390283,
+          "price": "151.26",
+          "size": 660
+        },
+        "pre": {
+          "time": 1749761990926,
+          "price": "151.5",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601686,
+          "price": "149.64",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US0231351067",
+      "receivedAt": "2025-06-15T09:32:21.148Z",
+      "data": {
+        "bid": {
+          "time": 1749848390280,
+          "price": "183.18",
+          "size": 544
+        },
+        "ask": {
+          "time": 1749848390280,
+          "price": "183.36",
+          "size": 544
+        },
+        "last": {
+          "time": 1749848390280,
+          "price": "183.18",
+          "size": 544
+        },
+        "pre": {
+          "time": 1749761990934,
+          "price": "183.9",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600817,
+          "price": "180.92",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "US88160R1014",
+      "receivedAt": "2025-06-15T09:32:21.249Z",
+      "data": {
+        "bid": {
+          "time": 1749848394537,
+          "price": "281.35",
+          "size": 1
+        },
+        "ask": {
+          "time": 1749848394537,
+          "price": "281.55",
+          "size": 1
+        },
+        "last": {
+          "time": 1749848394537,
+          "price": "281.35",
+          "size": 1
+        },
+        "pre": {
+          "time": 1749761998053,
+          "price": "275.4",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600255,
+          "price": "270.0",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0007164600",
+      "receivedAt": "2025-06-15T09:32:21.351Z",
+      "data": {
+        "bid": {
+          "time": 1749848347745,
+          "price": "253.35",
+          "size": 2
+        },
+        "ask": {
+          "time": 1749848347745,
+          "price": "254.3",
+          "size": 2
+        },
+        "last": {
+          "time": 1749848347745,
+          "price": "253.35",
+          "size": 2
+        },
+        "pre": {
+          "time": 1749761949236,
+          "price": "260.5",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600716,
+          "price": "257.9",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0007236101",
+      "receivedAt": "2025-06-15T09:32:21.452Z",
+      "data": {
+        "bid": {
+          "time": 1749848336262,
+          "price": "213.7",
+          "size": 12
+        },
+        "ask": {
+          "time": 1749848336262,
+          "price": "214.3",
+          "size": 12
+        },
+        "last": {
+          "time": 1749848336262,
+          "price": "213.7",
+          "size": 12
+        },
+        "pre": {
+          "time": 1749761949237,
+          "price": "217.4",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792605053,
+          "price": "214.1",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE0005190003",
+      "receivedAt": "2025-06-15T09:32:21.555Z",
+      "data": {
+        "bid": {
+          "time": 1749848317756,
+          "price": "74.74",
+          "size": 327
+        },
+        "ask": {
+          "time": 1749848317756,
+          "price": "74.84",
+          "size": 327
+        },
+        "last": {
+          "time": 1749848317756,
+          "price": "74.74",
+          "size": 327
+        },
+        "pre": {
+          "time": 1749761949232,
+          "price": "76.44",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792600254,
+          "price": "75.62",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "IE00B4L5Y983",
+      "receivedAt": "2025-06-15T09:32:21.656Z",
+      "data": {
+        "bid": {
+          "time": 1749848399427,
+          "price": "98.726",
+          "size": 1506
+        },
+        "ask": {
+          "time": 1749848399427,
+          "price": "98.856",
+          "size": 1506
+        },
+        "last": {
+          "time": 1749848399427,
+          "price": "98.726",
+          "size": 1506
+        },
+        "pre": {
+          "time": 1749761983777,
+          "price": "99.596",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792601103,
+          "price": "98.77",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    },
+    {
+      "isin": "DE000A0F5UH1",
+      "receivedAt": "2025-06-15T09:32:21.756Z",
+      "data": {
+        "bid": {
+          "time": 1749848260548,
+          "price": "30.525",
+          "size": 325
+        },
+        "ask": {
+          "time": 1749848260548,
+          "price": "30.72",
+          "size": 325
+        },
+        "last": {
+          "time": 1749848260548,
+          "price": "30.525",
+          "size": 325
+        },
+        "pre": {
+          "time": 1749761915139,
+          "price": "30.755",
+          "size": 0
+        },
+        "open": {
+          "time": 1749792606716,
+          "price": "30.335",
+          "size": 0
+        },
+        "qualityId": "realtime",
+        "leverage": null,
+        "delta": null
+      }
+    }
+  ],
+  "websocketEvents": [],
+  "metadata": {
+    "collectedAt": "2025-06-15T09:32:20.485Z",
+    "authenticatedUserId": "16f1ff6b-b686-4caf-bec3-ceed7ba1e556",
+    "sessionId": "000e6ba5-e610-4a6f-afcb-028720f2156f",
+    "totalDataPoints": 10,
+    "websocketStatus": {
+      "connected": true,
+      "authenticated": true,
+      "subscriptions": 0,
+      "reconnectAttempts": 0,
+      "initialized": true
+    },
+    "dataSourceMethod": "websocket",
+    "collectionDurationMs": 31602
+  }
+}

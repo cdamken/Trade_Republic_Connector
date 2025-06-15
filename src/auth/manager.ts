@@ -172,16 +172,25 @@ export class AuthManager {
         throw new AuthenticationError('No session data received', 'INVALID_RESPONSE');
       }
 
+      // Extract user ID from JWT token
+      let userId = 'unknown-user';
+      try {
+        const tokenPayload = JSON.parse(atob(response.data.sessionToken.split('.')[1]));
+        userId = tokenPayload.sub || 'unknown-user';
+      } catch (e) {
+        logger.warn('Could not extract user ID from token, using fallback');
+      }
+
       // Create session from response
       const session: AuthSession = {
         token: {
-          accessToken: response.data.sessionToken || `mock_token_${Date.now()}`,
-          refreshToken: response.data.refreshToken || `mock_refresh_${Date.now()}`,
+          accessToken: response.data.sessionToken,
+          refreshToken: response.data.refreshToken,
           expiresAt: Date.now() + 290 * 1000, // 290 seconds like Python implementation
           tokenType: 'Bearer',
         },
-        userId: response.data.user_id || `user_${Date.now()}`,
-        sessionId: response.data.session_id || `session_${Date.now()}`,
+        userId: userId,
+        sessionId: response.data.trackingId || `session-${Date.now()}`,
         createdAt: Date.now(),
         lastActivity: Date.now(),
       };
@@ -632,5 +641,211 @@ export class AuthManager {
     }
 
     return true;
+  }
+
+  /**
+   * Check if session is valid and server is reachable
+   */
+  public async validateSessionAndConnectivity(): Promise<{
+    isValid: boolean;
+    isServerReachable: boolean;
+    requiresReauth: boolean;
+    error?: string;
+  }> {
+    const result = {
+      isValid: false,
+      isServerReachable: false,
+      requiresReauth: false,
+      error: undefined as string | undefined,
+    };
+
+    try {
+      // Test server connectivity first (regardless of session status)
+      const isReachable = await this.trApi.testConnection();
+      result.isServerReachable = isReachable;
+
+      if (!isReachable) {
+        result.error = 'Server is not reachable';
+        return result;
+      }
+
+      // Now check if we have a session
+      if (!this.session) {
+        result.requiresReauth = true;
+        result.error = 'No active session found';
+        return result;
+      }
+
+      // Check basic session validity (expiration, structure)
+      if (!this.isSessionValid(this.session)) {
+        result.requiresReauth = true;
+        result.error = 'Session has expired or is invalid';
+        await this.clearPersistedSession();
+        this.session = undefined;
+        return result;
+      }
+
+      // Test session validity with a simple authenticated API call
+      try {
+        const sessionTest = await this.trApi.validateSession(this.session.token.accessToken);
+        
+        if (sessionTest.success) {
+          result.isValid = true;
+        } else {
+          result.requiresReauth = true;
+          result.error = 'Session no longer valid on server';
+          await this.clearPersistedSession();
+          this.session = undefined;
+        }
+      } catch (networkError) {
+        result.isServerReachable = false;
+        result.error = `Server not reachable: ${networkError instanceof Error ? networkError.message : 'Unknown error'}`;
+        
+        // If it's a network issue, we might still have a valid session for when connectivity returns
+        // But if it's an auth error (401, 403), we need to re-authenticate
+        if (networkError instanceof Error && (
+          networkError.message.includes('401') || 
+          networkError.message.includes('403') ||
+          networkError.message.includes('unauthorized') ||
+          networkError.message.includes('forbidden')
+        )) {
+          result.requiresReauth = true;
+          await this.clearPersistedSession();
+          this.session = undefined;
+        }
+      }
+
+      return result;
+    } catch (error) {
+      result.error = `Session validation error: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      result.requiresReauth = true;
+      return result;
+    }
+  }
+
+  /**
+   * Ensure valid session with automatic re-authentication if needed
+   * This method should be called before any API operations
+   */
+  public async ensureValidSession(): Promise<AuthSession> {
+    const validation = await this.validateSessionAndConnectivity();
+
+    if (validation.isValid && validation.isServerReachable) {
+      logger.debug('Session is valid and server is reachable');
+      return this.session!;
+    }
+
+    if (!validation.isServerReachable && !validation.requiresReauth) {
+      throw new AuthenticationError(
+        'Server is not reachable. Please check your internet connection and try again.',
+        'SERVER_UNREACHABLE'
+      );
+    }
+
+    if (validation.requiresReauth) {
+      logger.warn('Session validation failed, re-authentication required', { 
+        error: validation.error 
+      });
+      
+      // Clear any invalid session data
+      this.session = undefined;
+      await this.clearPersistedSession();
+
+      throw new AuthenticationError(
+        'Session has expired or is invalid. Please log in again.',
+        'SESSION_EXPIRED'
+      );
+    }
+
+    throw new AuthenticationError(
+      `Authentication validation failed: ${validation.error}`,
+      'VALIDATION_FAILED'
+    );
+  }
+
+  /**
+   * Force re-authentication with proper 2FA flow
+   */
+  public async forceReAuthentication(credentials: LoginCredentials): Promise<{
+    session?: AuthSession;
+    requiresMFA?: boolean;
+    challenge?: MFAChallenge;
+  }> {
+    try {
+      logger.info('🔄 Forcing re-authentication...');
+
+      // Clear any existing session data
+      this.session = undefined;
+      await this.clearPersistedSession();
+
+      // Check if device is still paired
+      if (!this.deviceKeys) {
+        await this.initialize();
+        if (!this.deviceKeys) {
+          throw new AuthenticationError(
+            'Device pairing has been lost. Please complete device pairing again.',
+            'DEVICE_NOT_PAIRED'
+          );
+        }
+      }
+
+      // Attempt login with device keys
+      try {
+        const session = await this.login(credentials);
+        logger.info('✅ Re-authentication successful');
+        return { session };
+      } catch (error) {
+        if (error instanceof TwoFactorRequiredError) {
+          logger.info('🔐 2FA required for re-authentication');
+          return {
+            requiresMFA: true,
+            challenge: error.challenge,
+          };
+        }
+        throw error;
+      }
+    } catch (error) {
+      logger.error('Re-authentication failed', {
+        error: error instanceof Error ? error.message : error,
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Check if current session needs refresh due to approaching expiration
+   */
+  public shouldRefreshToken(): boolean {
+    if (!this.session) {
+      return false;
+    }
+
+    // Refresh if token expires within next 30 seconds
+    const refreshThreshold = 30 * 1000;
+    return (this.session.token.expiresAt - Date.now()) <= refreshThreshold;
+  }
+
+  /**
+   * Auto-refresh token if needed, with fallback to re-authentication
+   */
+  public async autoRefreshIfNeeded(): Promise<boolean> {
+    if (!this.shouldRefreshToken()) {
+      return true; // No refresh needed
+    }
+
+    try {
+      logger.debug('Auto-refreshing token...');
+      await this.refreshToken();
+      return true;
+    } catch (error) {
+      logger.warn('Token refresh failed, session may need re-authentication', {
+        error: error instanceof Error ? error.message : error,
+      });
+      
+      // Clear session as refresh failed
+      this.session = undefined;
+      await this.clearPersistedSession();
+      return false;
+    }
   }
 }

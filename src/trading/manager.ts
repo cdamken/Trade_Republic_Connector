@@ -472,26 +472,11 @@ export class TradingManager {
    * Check if markets are open for trading
    */
   async getMarketStatus(venue: TradingVenue): Promise<MarketStatus> {
-    // This would typically call a real API endpoint
-    // For now, return mock data based on time
-    const now = new Date();
-    const hour = now.getHours();
-    
-    let status: 'open' | 'closed' | 'pre_market' | 'after_hours';
-    
-    if (hour >= 9 && hour < 17) {
-      status = 'open';
-    } else if (hour >= 8 && hour < 9) {
-      status = 'pre_market';
-    } else if (hour >= 17 && hour < 20) {
-      status = 'after_hours';
-    } else {
-      status = 'closed';
-    }
-
+    // Note: Trade Republic doesn't have a specific market status endpoint
+    // Market status is typically determined by trading hours
     return {
       venue,
-      status,
+      status: 'closed', // Would need to implement based on actual trading hours
       timezone: 'Europe/Berlin',
     };
   }
@@ -503,20 +488,25 @@ export class TradingManager {
     const sessionToken = this.ensureAuthenticated();
 
     try {
-      // This would call a real API endpoint
-      // For now, return mock limits
-      return {
-        dailyOrderLimit: 100,
-        maxOrderValue: 50000,
-        minOrderValue: 1,
-        availableCash: 10000,
-        currency: 'EUR',
-        restrictions: {
-          dayTrading: true,
-          shortSelling: false,
-          optionsTrading: false,
-        },
-      };
+      // Get account information from portfolio summary which includes cash balance
+      const portfolioResponse = await this.trApi.getPortfolioSummary(sessionToken);
+      
+      if (portfolioResponse.data) {
+        return {
+          dailyOrderLimit: 999, // Trade Republic doesn't typically have daily order limits for retail
+          maxOrderValue: 999999, // Large value, actual limits depend on account
+          minOrderValue: 1, // Minimum 1 EUR
+          availableCash: portfolioResponse.data.availableCash || 0,
+          currency: portfolioResponse.data.currency || 'EUR',
+          restrictions: {
+            dayTrading: true,
+            shortSelling: false, // Retail accounts typically can't short sell
+            optionsTrading: false, // Retail accounts typically can't trade options
+          },
+        };
+      }
+      
+      throw new Error('Failed to retrieve portfolio data');
     } catch (error) {
       logger.error('❌ Failed to get trading limits', {
         error: error instanceof Error ? error.message : error,

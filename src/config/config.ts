@@ -4,7 +4,7 @@
  * Configuration management for the Trade Republic connector
  */
 
-import type { WebSocketConfig } from '../types/websocket';
+import type { TRWebSocketConfig } from '../websocket/tr-websocket';
 
 export interface TradeRepublicConfig {
   // API Configuration
@@ -19,7 +19,7 @@ export interface TradeRepublicConfig {
   autoRefreshTokens: boolean;
 
   // WebSocket
-  websocket: WebSocketConfig;
+  websocket: TRWebSocketConfig;
 
   // Rate Limiting
   rateLimitRequests: number;
@@ -36,8 +36,8 @@ export interface TradeRepublicConfig {
 
 export const DEFAULT_CONFIG: TradeRepublicConfig = {
   apiUrl: 'https://api.traderepublic.com',
-  websocketUrl: 'wss://api.traderepublic.com/websocket',
-  userAgent: 'trade-republic-connector/1.0.0',
+  websocketUrl: 'wss://api.traderepublic.com',
+  userAgent: 'TradeRepublic/Android 30/App Version 1.1.5534',
   timeout: 30000,
 
   credentialsPath: undefined,
@@ -45,11 +45,11 @@ export const DEFAULT_CONFIG: TradeRepublicConfig = {
   autoRefreshTokens: true,
 
   websocket: {
-    url: 'wss://api.traderepublic.com/websocket',
-    reconnectDelay: 5000,
+    url: 'wss://api.traderepublic.com',
+    locale: 'en',
+    connectionTimeout: 30000,
     maxReconnectAttempts: 10,
-    heartbeatInterval: 30000,
-    subscriptionTimeout: 10000,
+    reconnectDelay: 5000,
   },
 
   rateLimitRequests: 100,
