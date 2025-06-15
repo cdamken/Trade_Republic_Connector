@@ -19,7 +19,8 @@ import {
   AuthenticationError, 
   TwoFactorRequiredError
 } from '../types/auth';
-import { TradeRepublicAPI } from '../api/trade-republic-api.js';
+import { DEFAULT_CONFIG } from '../config/config.js';
+import { HttpClient } from '../api/http-client.js';
 import { logger } from '../utils/logger.js';
 
 export class AuthManager {
@@ -27,12 +28,12 @@ export class AuthManager {
   private deviceKeys?: DeviceKeys;
   private credentialsPath: string;
   private deviceKeysPath: string;
-  private trApi: TradeRepublicAPI;
+  private httpClient: HttpClient;
 
   constructor(credentialsPath?: string) {
     this.credentialsPath = credentialsPath ?? join(homedir(), '.tr-connector', 'session.json');
     this.deviceKeysPath = join(homedir(), '.tr-connector', 'device-keys.json');
-    this.trApi = new TradeRepublicAPI();
+    this.httpClient = new HttpClient(DEFAULT_CONFIG);
   }
 
   /**
@@ -377,13 +378,14 @@ export class AuthManager {
       // In reality, this would make an HTTP request to TR's auth endpoint
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Step 3: TR always requires App token for security (not SMS)
-      // Generate a simulated MFA challenge
+      // Step 3: Generate MFA challenge based on user preference
+      const mfaMethod = credentials.preferredMfaMethod || 'APP'; // Default to APP
       const challenge: MFAChallenge = {
         challengeId: 'mfa_' + Date.now(),
-        type: 'APP', // Trade Republic uses app-based 2FA
-        message: 'Enter the 4-digit code from your Trade Republic app',
+        type: mfaMethod,
+        message: this.getMFAMessage(mfaMethod),
         expiresAt: Date.now() + 5 * 60 * 1000, // 5 minutes
+        length: mfaMethod === 'APP' ? 4 : 6 // APP codes are 4 digits, SMS are 6
       };
 
       logger.info('2FA challenge sent', { 
@@ -846,6 +848,22 @@ export class AuthManager {
       this.session = undefined;
       await this.clearPersistedSession();
       return false;
+    }
+  }
+
+  /**
+   * Get appropriate MFA message based on method
+   */
+  private getMFAMessage(method: 'SMS' | 'APP' | 'EMAIL'): string {
+    switch (method) {
+      case 'APP':
+        return 'Enter the 4-digit code from your Trade Republic app';
+      case 'SMS':
+        return 'Enter the 6-digit code sent to your phone via SMS';
+      case 'EMAIL':
+        return 'Enter the 6-digit code sent to your email';
+      default:
+        return 'Enter the verification code';
     }
   }
 }

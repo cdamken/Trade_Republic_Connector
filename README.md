@@ -67,7 +67,7 @@ All data is stored in a comprehensive SQLite database with proper schema for:
 - Tax reporting preparation
 - Investment research
 
-📖 **[Complete Data Collection Guide →](./DATA_COLLECTION_GUIDE.md)**
+📖 **[Complete Data Collection Guide →](./docs/DATA_COLLECTION_GUIDE.md)**
 
 ## 🗂️ Data Management & Organization
 
@@ -90,7 +90,7 @@ The system automatically:
 - 📊 **Monitors Organization** - Status reports and health checks
 - 🛡️ **Protects Sensitive Data** - Enhanced .gitignore and security
 
-📖 **[Complete Data Management Guide →](./DATA_MANAGEMENT.md)**
+📖 **[Complete Data Management Guide →](./docs/DATA_MANAGEMENT.md)**
 
 ## 📊 Current Status
 
@@ -1572,7 +1572,17 @@ See [API_REFERENCE.md](./API_REFERENCE.md) for comprehensive API reference inclu
 4. **Multi-market Support**: Expand to Asian markets
 5. **API Rate Management**: Implement intelligent throttling
 
-## 📜 License
+## � Documentation
+
+Comprehensive documentation is available in the [`docs/`](./docs/) folder:
+
+- **[📖 Documentation Index](./docs/README.md)** - Complete documentation overview
+- **[🗃️ Production Database Guide](./docs/PRODUCTION_DATA_COMPLETE.md)** - Using the production database
+- **[📊 Complete Data Catalog](./docs/COMPLETE_DATA_CATALOG.md)** - All available Trade Republic data
+- **[🔧 API Reference](./docs/API_REFERENCE.md)** - Technical API documentation
+- **[🛠️ Data Management](./docs/DATA_MANAGEMENT.md)** - Organization and security
+
+## �📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 

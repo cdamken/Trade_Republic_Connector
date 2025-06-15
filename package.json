@@ -24,6 +24,12 @@
     "test:websocket": "tsx examples/tr-websocket-test.ts",
     "demo:data": "tsx examples/simple-data-demo.ts",
     "examples:auth": "tsx examples/websocket-asset-collector.ts",
+    "auth-demo": "tsx examples/enhanced-auth.ts",
+    "auth-app": "tsx examples/enhanced-auth.ts --method app",
+    "auth-sms": "tsx examples/enhanced-auth.ts --method sms",
+    "2fa-demo": "tsx examples/simple-2fa-demo.ts",
+    "2fa-app": "tsx examples/simple-2fa-demo.ts --method app",
+    "2fa-sms": "tsx examples/simple-2fa-demo.ts --method sms",
     
     "collect-data": "tsx examples/comprehensive-data-collection.ts",
     "quick-collect": "tsx examples/quick-data-collection.ts",

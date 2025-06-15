@@ -8,6 +8,7 @@ export interface LoginCredentials {
   username: string;
   password: string;
   pin?: string;
+  preferredMfaMethod?: 'SMS' | 'APP'; // User's preferred 2FA method
 }
 
 export interface AuthToken {
@@ -23,6 +24,13 @@ export interface AuthSession {
   sessionId: string;
   createdAt: number;
   lastActivity: number;
+}
+
+export interface LoginResult {
+  success: boolean;
+  session?: AuthSession;
+  requiresMFA?: boolean;
+  challenge?: MFAChallenge;
 }
 
 export interface MFAChallenge {

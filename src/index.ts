@@ -7,7 +7,6 @@
 
 // Main exports
 export { TradeRepublicClient } from './api/client';
-export { TradeRepublicAPI } from './api/trade-republic-api';
 export type { TradeRepublicConfig } from './config/config';
 
 // Configuration exports
@@ -27,18 +26,18 @@ export {
 export { HttpClient, RateLimiter } from './api/http-client';
 
 // Portfolio exports
-export { PortfolioManager } from './portfolio/manager';
+// export { PortfolioManager } from './portfolio/manager'; // TODO: Create this
 
 // Utility exports
 export { logger } from './utils/logger';
 export type { LogLevel } from './utils/logger';
 
 // WebSocket exports
-export { WebSocketManager } from './websocket/manager';
-export type { WebSocketConfig, Subscription } from './websocket/manager';
+// export { WebSocketManager } from './websocket/manager'; // TODO: Check implementation
+// export type { WebSocketConfig, Subscription } from './websocket/manager';
 
 // Trading exports
-export { TradingManager } from './trading/manager';
+// export { TradingManager } from './trading/manager'; // TODO: Create this
 export type {
   BuyOrderData,
   SellOrderData,
@@ -64,8 +63,8 @@ export {
 } from './types/trading';
 
 // Asset data collection exports  
-export { ComprehensiveAssetDataCollector } from './data/asset-collector';
-export { AssetTestDatabase } from './database/test-database';
+// export { ComprehensiveAssetDataCollector } from './data/asset-collector'; // TODO: Check this
+// export { AssetTestDatabase } from './database/test-database'; // TODO: Create this
 export type {
   ComprehensiveAssetInfo,
   ComprehensiveHistoricalData,
