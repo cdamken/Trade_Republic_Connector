@@ -27,6 +27,10 @@
     
     "collect-data": "tsx examples/comprehensive-data-collection.ts",
     "quick-collect": "tsx examples/quick-data-collection.ts",
+    "collect-production": "tsx scripts/collect-production-data.ts",
+    "collect-production-full": "tsx scripts/collect-production-data.ts --full",
+    "collect-production-quick": "tsx scripts/collect-production-data.ts --quick",
+    "collect-prices": "tsx scripts/collect-production-data.ts --prices-only",
     "test-setup": "tsx scripts/test-setup.ts",
     "explore-db": "tsx scripts/explore-database.ts",
     "manage-data": "./scripts/manage-data.sh",

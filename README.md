@@ -18,22 +18,54 @@ A comprehensive, production-ready TypeScript connector for the Trade Republic AP
 
 **NEW**: Download ALL your Trade Republic data with a single command!
 
+### Production Database Collection
 ```bash
 # Test your setup first
 npm run test-setup
 
-# Download everything
-npm run collect-data
+# Full production data collection (RECOMMENDED)
+npm run collect-production-full
+
+# Quick collection (portfolio + recent orders only)
+npm run collect-production-quick
+
+# Prices only (for regular updates)
+npm run collect-prices
 ```
 
-This system downloads:
-- 💼 **Complete Portfolio** - All positions, values, and performance
-- 📜 **Trading History** - All orders and transactions 
-- 👀 **Watchlist** - All tracked instruments
-- 📰 **Market Data** - Real-time prices and news
-- 🏦 **Account Info** - Cash positions and summaries
+### What Data is Collected?
 
-All data is stored locally in SQLite database + JSON/CSV exports.
+**🏦 Account & Portfolio Data:**
+- Complete portfolio summary (total value, returns, cash positions)
+- All individual positions with cost basis and current values
+- Portfolio performance across all timeframes (1D, 1W, 1M, 3M, 6M, 1Y, ALL)
+
+**📊 Trading & Transaction History:**
+- Complete order history with execution details
+- Order executions with fees and venue information
+- Trading statistics and performance analytics
+
+**💹 Market Data:**
+- Real-time prices for all held positions
+- Historical price data (OHLCV) - optional
+- Market status and trading venue information
+
+**🎯 Investment Research:**
+- Complete instrument information (company details, sectors, exchanges)
+- Watchlist items with price targets
+- Market news and analysis
+
+**💰 Financial Details:**
+- Cash positions by currency
+- Available funds for trading and withdrawal
+- Fee structures and trading costs
+
+All data is stored in a comprehensive SQLite database with proper schema for:
+- Portfolio analysis and reporting
+- Trading strategy backtesting
+- Performance tracking
+- Tax reporting preparation
+- Investment research
 
 📖 **[Complete Data Collection Guide →](./DATA_COLLECTION_GUIDE.md)**
 
