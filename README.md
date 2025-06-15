@@ -1,10 +1,11 @@
 # Trade Republic API Connector
 
-A comprehensive, production-ready TypeScript connector for the Trade Republic API that provides real-time asset price collection, WebSocket integration, and database storage capabilities.
+A comprehensive, production-ready TypeScript connector for the Trade Republic API that provides real-time asset price collection, WebSocket integration, and complete data extraction capabilities.
 
 ## 🎯 Features
 
 - ✅ **Real Authentication** - Device pairing, PIN, and 2FA support
+- ✅ **Complete Data Extraction** - Download ALL your Trade Republic data
 - ✅ **WebSocket Integration** - Real-time price data collection
 - ✅ **Asset Discovery** - Automated discovery of stocks and ETFs
 - ✅ **Database Storage** - SQLite database with asset and price data
@@ -13,8 +14,32 @@ A comprehensive, production-ready TypeScript connector for the Trade Republic AP
 - ✅ **Clean App Interface** - Simple API for application integration
 - ✅ **Comprehensive Documentation** - Full API reference included
 
+## 📥 Comprehensive Data Collection
+
+**NEW**: Download ALL your Trade Republic data with a single command!
+
+```bash
+# Test your setup first
+npm run test-setup
+
+# Download everything
+npm run collect-data
+```
+
+This system downloads:
+- 💼 **Complete Portfolio** - All positions, values, and performance
+- 📜 **Trading History** - All orders and transactions 
+- 👀 **Watchlist** - All tracked instruments
+- 📰 **Market Data** - Real-time prices and news
+- 🏦 **Account Info** - Cash positions and summaries
+
+All data is stored locally in SQLite database + JSON/CSV exports.
+
+📖 **[Complete Data Collection Guide →](./DATA_COLLECTION_GUIDE.md)**
+
 ## 📊 Current Status
 
+- **Comprehensive Data Access**: Portfolio, trading history, watchlist, market data
 - **Asset Discovery**: Dynamic discovery system for stocks, ETFs, bonds, and cryptocurrencies
 - **Markets Supported**: US, DE, EU, FR, GB, NL, CH and others  
 - **Asset Types**: Stocks, ETFs, Bonds, Cryptocurrencies (via ISIN/Symbol)
