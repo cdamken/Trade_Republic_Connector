@@ -30,6 +30,13 @@
     "2fa-demo": "tsx examples/simple-2fa-demo.ts",
     "2fa-app": "tsx examples/simple-2fa-demo.ts --method app",
     "2fa-sms": "tsx examples/simple-2fa-demo.ts --method sms",
+    "2fa-test": "tsx examples/real-2fa-test.ts",
+    "2fa-test-app": "tsx examples/real-2fa-test.ts --method app",
+    "2fa-test-sms": "tsx examples/real-2fa-test.ts --method sms",
+    "api-discovery": "tsx examples/api-discovery.ts",
+    "complete-2fa": "tsx examples/complete-2fa-test.ts",
+    "working-auth": "tsx examples/working-auth-example.ts",
+    "2fa-simple": "tsx examples/simple-working-2fa-test.ts",
     
     "collect-data": "tsx examples/comprehensive-data-collection.ts",
     "quick-collect": "tsx examples/quick-data-collection.ts",

@@ -35,10 +35,10 @@ export interface LoginResult {
 
 export interface MFAChallenge {
   challengeId: string;
-  type: 'SMS' | 'APP' | 'EMAIL';
+  type: 'SMS' | 'APP';
   message: string;
   expiresAt: number;
-  length?: number; // Expected code length (e.g., 4 for app codes, 6 for SMS)
+  length: 4; // Trade Republic always uses 4-digit codes
 }
 
 export interface MFAResponse {

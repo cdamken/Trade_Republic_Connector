@@ -45,8 +45,9 @@ export class TradeRepublicClient {
     this.config = { ...DEFAULT_CONFIG, ...config };
     this.authManager = new AuthManager(this.config.credentialsPath);
     this.httpClient = new HttpClient(this.config);
-    this.portfolioManager = new PortfolioManager(this.authManager);
-    this.tradingManager = new TradingManager(this.authManager);
+    // TODO: Implement these managers
+    // this.portfolioManager = new PortfolioManager(this.authManager);
+    // this.tradingManager = new TradingManager(this.authManager);
     this.websocketManager = new TradeRepublicWebSocket(this.config.websocket, this.authManager);
 
     // Set up logging level

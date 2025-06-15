@@ -15,6 +15,7 @@ export interface EnvironmentConfig {
   trUsername?: string;
   trPassword?: string;
   trPin?: string;
+  tr2faMethod: 'app' | 'sms';
   
   // API Configuration
   apiUrl: string;
@@ -29,11 +30,14 @@ export interface EnvironmentConfig {
 }
 
 export function loadEnvironmentConfig(): EnvironmentConfig {
+  const tr2faMethod = process.env.TR_2FA_METHOD?.toLowerCase();
+  
   return {
     // Credentials from environment variables (secure)
     trUsername: process.env.TR_USERNAME,
     trPassword: process.env.TR_PASSWORD,
     trPin: process.env.TR_PIN,
+    tr2faMethod: (tr2faMethod === 'sms' || tr2faMethod === 'app') ? tr2faMethod : 'app',
     
     // API endpoints
     apiUrl: process.env.TR_API_URL ?? 'https://api.traderepublic.com',
