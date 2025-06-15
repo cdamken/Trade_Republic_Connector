@@ -1,0 +1,58 @@
+{
+  "name": "@carlos/trade-republic-api",
+  "version": "1.0.0",
+  "description": "Modern, secure, and comprehensive Trade Republic API client",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write src",
+    "pair": "tsx src/cli/pair.ts",
+    "demo": "tsx examples/demo.ts",
+    "docs": "typedoc src --out docs"
+  },
+  "keywords": [
+    "trade-republic",
+    "trading",
+    "finance",
+    "api",
+    "typescript",
+    "crypto",
+    "portfolio"
+  ],
+  "author": "Carlos",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.18.0",
+    "node-fetch": "^3.3.2",
+    "chalk": "^5.3.0",
+    "inquirer": "^10.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.1",
+    "@types/ws": "^8.5.13",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
+    "eslint": "^9.14.0",
+    "prettier": "^3.3.3",
+    "tsx": "^4.19.2",
+    "typedoc": "^0.26.11",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlos/trade-republic-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carlos/trade-republic-api/issues"
+  },
+  "homepage": "https://github.com/carlos/trade-republic-api#readme"
+}

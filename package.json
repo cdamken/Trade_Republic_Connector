@@ -1,0 +1,67 @@
+{
+  "name": "trade-republic-connector",
+  "version": "1.0.0",
+  "description": "Modern TypeScript Trade Republic API connector with support for 400+ assets",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:manual": "tsx scripts/test-manual.ts",
+    "cli:login": "tsx scripts/cli.ts login",
+    "cli:demo": "tsx scripts/cli.ts demo",
+    "demo:auth": "tsx examples/auth-flow-demo.ts",
+    "demo:real-auth": "tsx examples/real-auth-demo.ts",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,json}\"",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "trade-republic",
+    "trading",
+    "api",
+    "typescript",
+    "finance",
+    "broker",
+    "websocket"
+  ],
+  "author": "Carlos Damken <carlos@damken.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.29.0",
+    "@types/node": "^24.0.1",
+    "@types/ws": "^8.18.1",
+    "@typescript-eslint/eslint-plugin": "^8.34.0",
+    "@typescript-eslint/parser": "^8.34.0",
+    "@vitest/ui": "^3.2.3",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.1",
+    "prettier": "^3.5.3",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.3"
+  },
+  "dependencies": {
+    "axios": "^1.10.0",
+    "dotenv": "^16.5.0",
+    "winston": "^3.17.0",
+    "ws": "^8.18.2"
+  }
+}
