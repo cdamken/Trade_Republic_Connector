@@ -26,6 +26,13 @@ describe('AuthManager', () => {
   beforeEach(() => {
     authManager = new AuthManager();
     vi.clearAllMocks();
+    
+    // Mock device keys to allow credential validation
+    vi.spyOn(authManager as any, 'loadDeviceKeys').mockResolvedValue({
+      publicKey: 'mock_public_key',
+      privateKey: 'mock_private_key',
+      processId: 'mock_process_id'
+    });
   });
 
   afterEach(() => {
@@ -38,6 +45,14 @@ describe('AuthManager', () => {
         username: '+49 176 12345678',
         password: '1234', // Valid 4-digit PIN
       };
+
+      // Mock the TradeRepublicAPI to trigger MFA flow
+      vi.spyOn(authManager as any, 'trApi', 'get').mockReturnValue({
+        loginWithDeviceKeys: vi.fn().mockResolvedValue({
+          error: { message: 'MFA authentication required', code: 'MFA_REQUIRED' },
+          data: null
+        })
+      });
 
       await expect(authManager.login(credentials)).rejects.toThrow('MFA authentication required');
     });
@@ -224,7 +239,7 @@ describe('AuthManager', () => {
       const { access } = await import('fs/promises');
       vi.mocked(access).mockRejectedValue(new Error('File not found'));
 
-      const session = await authManager.loadSession();
+      const session = await (authManager as any).loadSession();
       
       expect(session).toBeNull();
     });
@@ -234,7 +249,7 @@ describe('AuthManager', () => {
       vi.mocked(access).mockResolvedValue(undefined);
       vi.mocked(readFile).mockResolvedValue('invalid json');
 
-      const session = await authManager.loadSession();
+      const session = await (authManager as any).loadSession();
       
       expect(session).toBeNull();
     });

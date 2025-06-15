@@ -7,7 +7,7 @@
 
 import crypto from 'crypto';
 import { AuthenticationError, TwoFactorRequiredError, RateLimitError } from '../types/auth.js';
-import type { LoginCredentials, MFAChallenge, DeviceKeys } from '../types/auth.js';
+import type { LoginCredentials, DeviceKeys } from '../types/auth.js';
 import { logger } from '../utils/logger.js';
 
 export interface TRApiConfig {

@@ -17,8 +17,7 @@ import type {
 } from '../types/auth';
 import { 
   AuthenticationError, 
-  TwoFactorRequiredError,
-  SessionExpiredError 
+  TwoFactorRequiredError
 } from '../types/auth';
 import { TradeRepublicAPI } from '../api/trade-republic-api.js';
 import { logger } from '../utils/logger.js';
@@ -142,24 +141,24 @@ export class AuthManager {
     try {
       logger.info('🔓 Logging in with device keys...');
 
-      // Check if device is paired
-      if (!this.deviceKeys) {
-        await this.initialize();
-        if (!this.deviceKeys) {
-          throw new AuthenticationError(
-            'Device not paired. Please complete device pairing first.',
-            'DEVICE_NOT_PAIRED'
-          );
-        }
-      }
-
-      // Validate credentials format
+      // Validate credentials format first
       if (!this.isValidPhoneNumber(credentials.username)) {
         throw new AuthenticationError('Invalid phone number format', 'INVALID_PHONE');
       }
 
       if (!this.isValidPIN(credentials.password)) {
         throw new AuthenticationError('Invalid PIN format', 'INVALID_PIN');
+      }
+
+      // Check if device is paired
+      if (!this.deviceKeys) {
+        await this.initialize();
+        if (!this.deviceKeys) {
+          throw new AuthenticationError(
+            'Device not paired. Please run the pairing process first.',
+            'DEVICE_NOT_PAIRED'
+          );
+        }
       }
 
       // Login with device keys

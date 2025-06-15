@@ -194,7 +194,38 @@ export class TradeRepublicClient {
   }
 
   // =================
-  // Authentication Methods  
+  // Configuration Methods
+  // =================
+
+  /**
+   * Get current configuration
+   */
+  public getConfig(): TradeRepublicConfig {
+    return { ...this.config };
+  }
+
+  /**
+   * Update configuration
+   */
+  public updateConfig(newConfig: Partial<TradeRepublicConfig>): void {
+    this.config = { ...this.config, ...newConfig };
+
+    // Update logger level if changed
+    if (newConfig.logLevel) {
+      logger.setLevel(newConfig.logLevel);
+    }
+
+    // Update HTTP client configuration
+    this.httpClient = new HttpClient(this.config);
+
+    // Re-initialize auth manager if credentials path changed
+    if (newConfig.credentialsPath) {
+      this.authManager = new AuthManager(this.config.credentialsPath);
+    }
+  }
+
+  // =================
+  // Authentication Methods
   // =================
 
   /**
@@ -219,7 +250,7 @@ export class TradeRepublicClient {
   /**
    * Get all portfolio positions
    */
-  public async getPortfolioPositions() {
+  public async getPortfolioPositions(): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getPositions();
@@ -228,7 +259,7 @@ export class TradeRepublicClient {
   /**
    * Get portfolio summary and overview
    */
-  public async getPortfolioSummary() {
+  public async getPortfolioSummary(): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getSummary();
@@ -237,7 +268,7 @@ export class TradeRepublicClient {
   /**
    * Get specific position by ISIN
    */
-  public async getPosition(isin: string) {
+  public async getPosition(isin: string): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getPosition(isin);
@@ -246,7 +277,7 @@ export class TradeRepublicClient {
   /**
    * Get cash position and available funds
    */
-  public async getCashPosition() {
+  public async getCashPosition(): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getCash();
@@ -255,7 +286,7 @@ export class TradeRepublicClient {
   /**
    * Get portfolio performance for a given timeframe
    */
-  public async getPortfolioPerformance(timeframe?: '1D' | '1W' | '1M' | '3M' | '6M' | '1Y' | 'ALL') {
+  public async getPortfolioPerformance(timeframe?: '1D' | '1W' | '1M' | '3M' | '6M' | '1Y' | 'ALL'): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getPerformance(timeframe);
@@ -264,7 +295,7 @@ export class TradeRepublicClient {
   /**
    * Get instrument information by ISIN
    */
-  public async getInstrumentInfo(isin: string) {
+  public async getInstrumentInfo(isin: string): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getInstrumentInfo(isin);
@@ -273,7 +304,7 @@ export class TradeRepublicClient {
   /**
    * Search for instruments by name or symbol
    */
-  public async searchInstruments(query: string) {
+  public async searchInstruments(query: string): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.searchInstruments(query);
@@ -282,7 +313,7 @@ export class TradeRepublicClient {
   /**
    * Get positions filtered by minimum value
    */
-  public async getPositionsByValue(minValue: number = 0) {
+  public async getPositionsByValue(minValue: number = 0): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getPositionsByValue(minValue);
@@ -291,7 +322,7 @@ export class TradeRepublicClient {
   /**
    * Get positions with positive performance
    */
-  public async getWinningPositions() {
+  public async getWinningPositions(): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getWinningPositions();
@@ -300,7 +331,7 @@ export class TradeRepublicClient {
   /**
    * Get positions with negative performance
    */
-  public async getLosingPositions() {
+  public async getLosingPositions(): Promise<any> {
     this.ensureInitialized();
     this.ensureAuthenticated();
     return this.portfolioManager.getLosingPositions();
