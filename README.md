@@ -361,7 +361,7 @@ async function rateLimitedRequest<T>(request: () => Promise<T>): Promise<T> {
 ### Quick Start for Development
 
 ```bash
-git clone https://github.com/your-username/Trade_Republic_Connector.git
+git clone https://github.com/cdamken/Trade_Republic_Connector.git
 cd Trade_Republic_Connector
 npm install
 ```
@@ -1339,7 +1339,7 @@ npm run examples:auth      # Test authentication flow
 
 ```bash
 # Clone and setup
-git clone https://github.com/your-username/Trade_Republic_Connector.git
+git clone https://github.com/cdamken/Trade_Republic_Connector.git
 cd Trade_Republic_Connector
 npm install
 

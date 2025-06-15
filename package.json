@@ -2,6 +2,7 @@
   "name": "trade-republic-connector",
   "version": "1.0.0",
   "description": "Modern TypeScript Trade Republic API connector with support for 400+ assets",
+  "author": "Carlos Damken",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -38,8 +39,11 @@
     "broker",
     "websocket"
   ],
-  "author": "Trade Republic Connector Contributors",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdamken/Trade_Republic_Connector.git"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
